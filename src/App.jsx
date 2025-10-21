@@ -19,7 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/autopark" element={<AutoParkPage />} />
-            <Route path="/policies" element={<BookingPage />} />
+            <Route path="/booking" element={<BookingPage />} />
             <Route path="/policies" element={<PoliciesPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
