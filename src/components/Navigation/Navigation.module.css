@@ -1,0 +1,35 @@
+.navList {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  padding: 2px 8px;
+  border-radius: 8px;
+  transition: background-color 300ms linear;
+}
+
+.link {
+  font-weight: 300;
+  font-size: 20px;
+  color: #000;
+  transition: color 300ms linear;
+}
+
+.link:hover {
+  color: var(--white);
+}
+
+.item:has(.link:hover) {
+  background-color: var(--navi-blue);
+}
+
+.active {
+  color: var(--white);
+}
+
+.item:has(.active) {
+  background-color: var(--navi-blue);
+}

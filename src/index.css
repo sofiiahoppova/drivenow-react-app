@@ -102,7 +102,3 @@ input::placeholder,
 textarea::placeholder {
   color: var(--gray);
 }
-
-.logo {
-  font-family: Kodchasan, sans-serif;
-}
