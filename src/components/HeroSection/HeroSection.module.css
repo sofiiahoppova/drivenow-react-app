@@ -1,6 +1,6 @@
 .container {
   padding: 190px 124px;
-  background-image: url("/public/images/HeroBackground@2x.jpg");
+  background-image: url("/public/images/Hero Background.jpg");
   background-size: cover;
   background-position: center;
 
@@ -8,6 +8,7 @@
   flex-direction: column;
   gap: 32px;
 }
+
 .wrapper {
   display: flex;
   flex-direction: column;

@@ -7,10 +7,10 @@ const HeroSection = () => {
     <section className={css.container}>
       <div className={css.wrapper}>
         <h1 className={css.title}>Rent a car. Easy. Safe. Reliable.</h1>
-        <h2 className={css.description}>
+        <p className={css.description}>
           Travel in comfort — from city rides to long trips, choose the car that
           fits your journey.
-        </h2>
+        </p>
       </div>
 
       <ul className={css.list}>

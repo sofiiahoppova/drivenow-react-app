@@ -1,0 +1,28 @@
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  gap: 64px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.text {
+  font-weight: 400;
+  color: var(--navi-blue);
+}
+
+.accentText {
+  font-family: KdamThmorPro, serif;
+  font-size: 48px;
+  color: var(--navi-blue);
+}
