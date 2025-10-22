@@ -9,7 +9,7 @@ const BenefitsSection = () => {
         <li className={css.item}>
           <img
             className={css.image}
-            src="/public/images/car.png"
+            src="/images/car.png"
             alt="Electric car facing camera"
           />
           <h3 className={css.title}> Wide car selection </h3>
@@ -20,7 +20,7 @@ const BenefitsSection = () => {
         <li className={css.item}>
           <img
             className={css.image}
-            src="/public/images/public-safety.png"
+            src="/images/public-safety.png"
             alt="Sield protecting people"
           />
           <h3 className={css.title}> Safe & reliable </h3>
@@ -29,7 +29,7 @@ const BenefitsSection = () => {
         <li className={css.item}>
           <img
             className={css.image}
-            src="/public/images/hand.png"
+            src="/images/hand.png"
             alt="Hand paying with credit card"
           />
           <h3 className={css.title}>Easy booking </h3>
@@ -40,7 +40,7 @@ const BenefitsSection = () => {
         <li className={css.item}>
           <img
             className={css.image}
-            src="/public/images/location-pin.png"
+            src="/images/location-pin.png"
             alt="Location pin pointing into convinient place"
           />
           <h3 className={css.title}>Convenient locations</h3>
@@ -49,7 +49,7 @@ const BenefitsSection = () => {
         <li className={css.item}>
           <img
             className={css.image}
-            src="/public/images/handshake.png"
+            src="/images/handshake.png"
             alt="Two person shaking their hands"
           />
           <h3 className={css.title}>Trusted experience </h3>
