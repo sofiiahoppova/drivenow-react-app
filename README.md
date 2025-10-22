@@ -1,16 +1,114 @@
-# React + Vite
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🚗 DriveNow — Car Rental React App
 
-Currently, two official plugins are available:
+**DriveNow** — це сучасний застосунок для оренди автомобілів, створений на **React + Vite**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Мета проєкту — забезпечити користувачів простим, безпечним і зручним способом бронювання авто онлайн.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Основні Можливості
 
-## Expanding the ESLint configuration
+- **Пошук авто** за маркою, класом, коробкою передач та кількістю місць.
+- **Динамічний розрахунок** вартості оренди.
+- Вибір між **стандартним тарифом** і повним страхуванням (**Full Coverage**).
+- **Інтерактивний вибір дат** оренди.
+- **Зручна навігація** між сторінками (React Router).
+- **Чистий, адаптивний дизайн** і приємний інтерфейс.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Технології
+
+| Категорія                         | Технології                |
+| :-------------------------------- | :------------------------ |
+| **Frontend**                      | React, Vite               |
+| **Styling**                       | CSS Modules, custom fonts |
+| **Routing**                       | React Router              |
+| **Icons**                         | SVG sprite                |
+| **State Management (планується)** | Context API або Redux     |
+
+---
+
+## 🚀 Встановлення та Запуск
+
+Виконайте наступні кроки, щоб запустити проєкт локально:
+
+1.  **Клонуйте репозиторій**
+
+    ```bash
+    git clone https://github.com/sofiiahoppova/drivenow-react-app.git
+    ```
+
+2.  **Перейдіть у папку проєкту**
+
+    ```bash
+    cd drivenow-react-app
+    ```
+
+3.  **Встановіть залежності**
+
+    ```bash
+    npm install
+    ```
+
+4.  **Запустіть застосунок**
+
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## ⚙️ Backend (У Розробці)
+
+На цьому етапі проєкт містить лише **фронтенд** частину.
+
+У майбутньому планується реалізувати **Django backend** для:
+
+- Збереження даних користувачів та бронювань у базі даних.
+- Обробки запитів на оренду.
+- Керування страховими політиками та історією оренд.
+
+---
+
+## 📂 Структура Проєкту
+
+```
+drivenow-react-app/
+├── public/
+│ ├── images/
+│ ├── sprite.svg(icons)
+│ └── FavIcon.png
+├── src/
+│ ├── assets/images/fonts
+│ ├── components/
+│ ├── pages/
+│ ├── index.css
+│ ├── App.css
+│ ├── main.jsx
+│ └── App.jsx
+├── package.json
+└── README.md
+```
+
+---
+
+## 🗺️ Roadmap
+
+Основні етапи розробки:
+
+- Ініціалізація проєкту з **Vite**.
+- Створення базової структури компонентів.
+- Налаштування навігації.
+- **Інтеграція backend API (Django)**.
+- Авторизація користувачів.
+- Оптимізація UI.
+
+---
+
+## 🧑‍💻 Author
+
+**Sofiia Hoppova**
+_Frontend Developer 🌸_
