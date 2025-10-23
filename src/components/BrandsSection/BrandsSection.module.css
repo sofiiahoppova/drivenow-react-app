@@ -1,0 +1,57 @@
+.container {
+  background-image: url("/images/BrandsBackground.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.title {
+  color: var(--white);
+}
+
+.description {
+  color: var(--white);
+  margin-bottom: 32px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.item:hover {
+}
+
+.image {
+  margin: auto;
+  width: 124px;
+}
+
+.custom-prev,
+.custom-next {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.custom-prev:hover,
+.custom-next:hover {
+  fill: var(--white);
+}
+
+.custom-pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  color: var(--navi-blue);
+}
