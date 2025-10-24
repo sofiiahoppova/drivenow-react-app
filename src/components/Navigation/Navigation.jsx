@@ -4,11 +4,17 @@ import clsx from "clsx";
 
 import css from "./Navigation.module.css";
 
-const buildLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.active);
-};
+const Navigation = ({ color }) => {
+  const buildLinkClass = ({ isActive }) => {
+    return clsx(
+      css.link,
+      css.link,
+      color === "black" && css.linkBlack,
+      color === "white" && css.linkWhite,
+      isActive && (color === "black" ? css.activeBlue : css.activeWhite)
+    );
+  };
 
-const Navigation = () => {
   return (
     <nav>
       <ul className={css.navList}>
@@ -19,7 +25,7 @@ const Navigation = () => {
         </li>
         <li className={css.item}>
           <NavLink to="/aboutus" className={buildLinkClass}>
-            About Us
+            AboutUs
           </NavLink>
         </li>
         <li className={css.item}>

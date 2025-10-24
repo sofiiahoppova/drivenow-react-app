@@ -14,22 +14,45 @@
 .link {
   font-weight: 300;
   font-size: 20px;
-  color: #000;
   transition: color 300ms linear;
 }
 
-.link:hover {
+.linkBlack {
+  color: var(--black);
+}
+
+.linkBlack:hover {
   color: var(--white);
 }
 
-.item:has(.link:hover) {
+.item:has(.linkBlack:hover) {
   background-color: var(--navi-blue);
 }
 
-.active {
+.linkWhite {
   color: var(--white);
 }
 
-.item:has(.active) {
+.linkWhite:hover {
+  color: var(--navi-blue);
+}
+
+.item:has(.linkWhite:hover) {
+  background-color: var(--white);
+}
+
+.activeBlue {
+  color: var(--white);
+}
+
+.item:has(.activeBlue) {
   background-color: var(--navi-blue);
+}
+
+.activeWhite {
+  color: var(--navi-blue);
+}
+
+.item:has(.activeWhite) {
+  background-color: var(--white);
 }
