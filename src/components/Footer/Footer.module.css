@@ -1,0 +1,45 @@
+.container {
+  background-color: var(--navi-blue);
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mainWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: start;
+}
+
+.description {
+  font-size: 15px;
+  color: var(--white);
+  text-align: left;
+}
+
+.line {
+  width: 100%;
+  border: 1px solid var(--white);
+}
+.secondWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.iconsList {
+  display: flex;
+  gap: 12px;
+}
+
+.icon {
+  fill: var(--white);
+}
