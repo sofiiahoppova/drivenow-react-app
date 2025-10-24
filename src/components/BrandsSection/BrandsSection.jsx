@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/effect-coverflow";
+import clsx from "clsx";
 
 const BrandsSection = () => {
   return (
@@ -19,9 +20,9 @@ const BrandsSection = () => {
         Select your favorite brand and discover available models.
       </p>
       <div className={css.wrapper}>
-        <div className="custom-prev">
+        <div className={clsx("customPrev", css.customPrev)}>
           <svg className={css.icon} width={20} height={32}>
-            <use href="/sprite.svg#icon-chevron"></use>
+            <use href="/public/sprite.svg#icon-chevron-left"></use>
           </svg>
         </div>
         <Swiper
@@ -31,8 +32,8 @@ const BrandsSection = () => {
           slidesPerView={3}
           loop
           navigation={{
-            nextEl: ".custom-next",
-            prevEl: ".custom-prev",
+            nextEl: ".customNext",
+            prevEl: ".customPrev",
           }}
           pagination={{
             el: ".custom-pagination",
@@ -77,9 +78,9 @@ const BrandsSection = () => {
             />
           </SwiperSlide>
         </Swiper>
-        <div className="custom-next">
+        <div className={clsx("customNext", css.customNext)}>
           <svg className={css.icon} width={20} height={32}>
-            <use href="/sprite.svg#icon-chevron"></use>
+            <use href="/public/sprite.svg#icon-chevron-right"></use>
           </svg>
         </div>
       </div>

@@ -30,22 +30,19 @@
   padding: 24px;
 }
 
-.item:hover {
-}
-
 .image {
   margin: auto;
   width: 124px;
 }
 
-.custom-prev,
-.custom-next {
+.customPrev,
+.customNext {
   cursor: pointer;
   transition: 0.3s;
 }
 
-.custom-prev:hover,
-.custom-next:hover {
+.customPrev:hover,
+.customNext:hover {
   fill: var(--white);
 }
 
