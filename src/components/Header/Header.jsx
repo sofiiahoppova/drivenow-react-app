@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <div className={css.container}>
       <Logo />
-      <Navigation />
+      <Navigation color="black" />
       <ul className={css.loginMenu}>
         <li>
           <p>Login</p>
