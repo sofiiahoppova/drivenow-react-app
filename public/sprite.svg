@@ -1,5 +1,8 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
+<symbol id="icon-menu" viewBox="0 0 46 32">
+<path fill="none" stroke="#244a5b" style="stroke: var(--color1, #244a5b)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.5556" d="M1.778 1.778h42.667M1.778 16h42.667M1.778 30.222h42.667"></path>
+</symbol>
 <symbol id="icon-chevron-down" viewBox="0 0 51 32">
 <path fill="#244a5b" style="fill: var(--color1, #244a5b)" d="M0 4.824l4.544-4.824 21.056 22.352 21.056-22.352 4.544 4.824-25.6 27.176-25.6-27.176z"></path>
 </symbol>
