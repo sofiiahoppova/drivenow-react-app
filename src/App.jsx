@@ -7,6 +7,7 @@ import AutoParkPage from "./pages/AutoParkPage";
 import BookingPage from "./pages/BookingPage";
 import PoliciesPage from "./pages/PoliciesPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import Footer from "./components/Footer/Footer";
 
 import "./App.css";
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
+        <Footer />
       </div>
     </>
   );
