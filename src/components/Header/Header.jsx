@@ -1,25 +1,39 @@
-import React from "react";
-import css from "./Header.module.css";
+import React, { useState } from "react";
+
 import Navigation from "../Navigation/Navigation";
 import Logo from "../Logo/Logo";
 
+import css from "./Header.module.css";
+
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className={css.container}>
+    <header className={css.container}>
       <Logo />
-      <Navigation color="black" />
-      <ul className={css.loginMenu}>
-        <li>
-          <p>Login</p>
-        </li>
-        <li>
-          <p>|</p>
-        </li>
-        <li>
-          <p>Register</p>
-        </li>
-      </ul>
-    </div>
+      <div className={css.desktopMenu}>
+        <Navigation color="black" />
+      </div>
+      <button
+        className={css.menuButton}
+        onClick={() => {
+          setIsMenuOpen(true);
+        }}
+      >
+        <svg className={css.icon} width={24} height={16}>
+          <use href="/sprite.svg#icon-menu"></use>
+        </svg>
+      </button>
+      {isMenuOpen && (
+        <Navigation
+          color="white"
+          onClose={() => {
+            setIsMenuOpen(false);
+          }}
+          isMobile={isMenuOpen}
+        />
+      )}
+    </header>
   );
 };
 
