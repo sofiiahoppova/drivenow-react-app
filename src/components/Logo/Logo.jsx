@@ -1,12 +1,17 @@
 import React from "react";
-import css from "./Logo.module.css";
+import { NavLink } from "react-router-dom";
 import clsx from "clsx";
+
+import css from "./Logo.module.css";
 
 const Logo = ({ color = "blue" }) => {
   return (
-    <div className={clsx(color === "white" && css.logoWhite, css.logo)}>
+    <NavLink
+      to="/"
+      className={clsx(color === "white" && css.logoWhite, css.logo)}
+    >
       DriveNow
-    </div>
+    </NavLink>
   );
 };
 
