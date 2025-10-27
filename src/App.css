@@ -4,5 +4,11 @@
 }
 
 section {
-  padding: 124px 100px;
+  padding: 100px;
+}
+
+@media only screen and (max-width: 767px) {
+  section {
+    padding: 64px 32px;
+  }
 }
