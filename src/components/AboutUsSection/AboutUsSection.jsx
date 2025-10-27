@@ -7,8 +7,8 @@ const AboutUsSection = () => {
       <h2 className={css.title}>About Us</h2>
       <div className={css.contentWrapper}>
         <p className={css.description}>
-          For over 10 years, we’ve been helping people find the perfect car for
-          every occasion — whether it’s a quick city ride or a long road trip.
+          For over 10 years, we`ve been helping people find the perfect car for
+          every occasion — whether it`s a quick city ride or a long road trip.
           Our mission is simple: accessibility, reliability, and care for every
           customer. We believe that every journey should be comfortable and
           enjoyable.
