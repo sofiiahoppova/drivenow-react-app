@@ -1,7 +1,8 @@
 import React from "react";
+import PoliciesSection from "../components/PoliciesSection/PoliciesSection";
 
 const PoliciesPage = () => {
-  return <div>PoliciesPage</div>;
+  return <PoliciesSection />;
 };
 
 export default PoliciesPage;
