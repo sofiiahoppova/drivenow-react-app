@@ -1,10 +1,11 @@
 .accordion {
-  border-top: 1px solid #ccc;
-  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--dark-gray);
 }
 
 .item {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--dark-gray);
 }
 
 .itemBtn {
@@ -12,25 +13,29 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin: 0;
-  padding: 1rem;
-  font-size: 1rem;
+  padding: 24px;
+
+  font-size: 20px;
   text-align: left;
-  color: #007bff;
-  background-color: transparent;
-  border: none;
+  color: var(--navi-blue);
+
+  transition: background-color 300ms linear;
 }
 
 .itemBtn:hover {
-  background-color: #f3f3f3;
+  background-color: var(--gray);
 }
 
 .itemBtnExpanded {
-  background-color: #e7e7e7;
+  background-color: var(--gray);
 }
 
 .itemContent {
-  transition: height 0.25s cubic-bezier(0, 0, 0, 1);
+  font-weight: 300;
+  font-size: 18px;
+  text-align: left;
+
+  transition: height 300ms linear;
 }
 
 .itemPanel {
@@ -39,9 +44,25 @@
 
 .chevron {
   margin-left: auto;
-  transition: transform 0.25s cubic-bezier(0, 0, 0, 1);
+  transition: transform 300ms linear;
 }
 
 .itemBtnExpanded .chevron {
   transform: rotate(180deg);
+}
+
+@media only screen and (max-width: 767px) {
+  .accordion {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .itemBtn {
+    padding: 16px;
+    font-size: 18px;
+  }
+
+  .itemContent {
+    font-size: 16px;
+  }
 }
