@@ -6,22 +6,20 @@
   gap: 24px;
 }
 
-.mainWrapper {
+.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: start;
-}
-
-.titleWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: start;
+  gap: 24px;
 }
 
 .description {
   font-size: 15px;
   color: var(--white);
+  text-align: right;
+}
+
+.description.leftAlign {
   text-align: left;
 }
 
@@ -29,10 +27,12 @@
   width: 100%;
   border: 1px solid var(--white);
 }
+
 .secondWrapper {
   display: flex;
   justify-content: space-between;
   align-items: end;
+  gap: 24px;
 }
 
 .iconsList {

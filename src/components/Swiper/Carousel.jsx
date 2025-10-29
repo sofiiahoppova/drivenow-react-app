@@ -7,8 +7,8 @@ import { CustomSlide } from "./CustomSlide";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import css from "./BrandsSection.module.css";
-import "./Slider.css";
+import css from "./Carousel.module.css";
+import "./Carousel.css";
 
 const brands = [
   { id: 0, name: "Fiat" },
@@ -22,7 +22,7 @@ const brands = [
   { id: 8, name: "Audi" },
 ];
 
-const BrandsSection = () => {
+const Carousel = () => {
   const [activeSlide, setActiveSlide] = useState(4);
 
   const settings = {
@@ -78,4 +78,4 @@ const BrandsSection = () => {
   );
 };
 
-export default BrandsSection;
+export default Carousel;
