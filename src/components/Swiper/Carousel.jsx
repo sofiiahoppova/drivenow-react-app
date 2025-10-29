@@ -1,34 +1,40 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
+
+import { SampleNextArrow, SamplePrevArrow } from "./SliderArrows";
+import { CustomSlide } from "./CustomSlide";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Carousel.css";
+
 import css from "./Carousel.module.css";
+import "./Carousel.css";
 
-const SampleNextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} style={{ ...style }} onClick={onClick}></div>
-  );
-};
-
-const SamplePrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} style={{ ...style }} onClick={onClick}></div>
-  );
-};
+const brands = [
+  { id: 0, name: "Fiat" },
+  { id: 1, name: "Lexus" },
+  { id: 2, name: "Volkswagen" },
+  { id: 3, name: "Nissan" },
+  { id: 4, name: "Mercedes" },
+  { id: 5, name: "Lamborghini" },
+  { id: 6, name: "Toyota" },
+  { id: 7, name: "BMW" },
+  { id: 8, name: "Audi" },
+];
 
 const Carousel = () => {
+  const [activeSlide, setActiveSlide] = useState(4);
+
   const settings = {
     className: "center",
     centerMode: true,
     infinite: true,
     speed: 500,
     centerPadding: "24px",
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
+    initialSlide: 4,
+    swipeToSlide: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -47,80 +53,26 @@ const Carousel = () => {
         },
       },
     ],
+    beforeChange: (current, next) => {
+      setActiveSlide(next);
+    },
   };
+
   return (
     <section className={css.container}>
       <h2 className={css.title}>Btands We Offer</h2>
-      <p className={css.description}>
-        Select your favorite brand and discover available models.
-      </p>
-      <div className="slider-container">
-        <Slider {...settings}>
-          <div className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Lexus.png"
-              alt="Lexus"
-            />
-            <p>Lexus</p>
-          </div>
-          <div className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Volkswagen.png"
-              alt="Volkswagen Logo"
-            />
-            <p>Volkswagen</p>
-          </div>
-          <div className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Nissan.png"
-              alt="Nissan Logo"
-            />
-            <p>Nissan</p>
-          </div>
-          <div className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Mersedes.png"
-              alt="Mercedes Logo"
-            />
-            <p>Mersedes</p>
-          </div>
-          <div className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Lamborghini.png"
-              alt="Lamborghini Logo"
-            />
-            <p>Lamborghini</p>
-          </div>{" "}
-          <div className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Toyota.png"
-              alt="Toyota Logo"
-            />
-            <p>Toyota</p>
-          </div>
-          <div className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/BMW.png"
-              alt="BMW Logo"
-            />
-            <p>BMW</p>
-          </div>
-          <div className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Audi.png"
-              alt="Audi Logo"
-            />
-            <p>Audi</p>
-          </div>
-        </Slider>
+      <div className={css.wrapper}>
+        <p className={css.description}>
+          Select your favorite brand and discover available models.
+        </p>
+        <div className="slider-container">
+          <Slider {...settings}>
+            {brands.map((brand) => (
+              <CustomSlide brand={brand.name} />
+            ))}
+          </Slider>
+        </div>
+        <button className={css.button}>Find a Car</button>
       </div>
     </section>
   );
