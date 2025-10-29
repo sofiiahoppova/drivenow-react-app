@@ -1,0 +1,28 @@
+.container {
+  background-image: url("/images/BrandsBackground.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.title {
+  color: var(--white);
+}
+
+.description {
+  color: var(--white);
+  margin-bottom: 32px;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.image {
+  margin: auto;
+  height: 120px;
+}
