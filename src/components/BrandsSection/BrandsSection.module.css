@@ -8,23 +8,21 @@
   color: var(--white);
 }
 
-.description {
-  color: var(--white);
-  margin-bottom: 32px;
-}
-
 .wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   gap: 32px;
-  margin-bottom: 32px;
+}
+
+.description {
+  color: var(--white);
 }
 
 .item {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
+  gap: 6px; */
   background-color: var(--white);
   border-radius: 12px;
   padding: 24px;
@@ -32,23 +30,16 @@
 
 .image {
   margin: auto;
-  width: 124px;
+  margin-bottom: 6px;
+  height: 80px;
 }
 
-.customPrev,
-.customNext {
-  cursor: pointer;
-  transition: 0.3s;
-}
+.button {
+  padding: 18px 48px;
+  border-radius: 32px;
+  background-color: var(--navi-blue);
 
-.customPrev:hover,
-.customNext:hover {
-  fill: var(--white);
-}
-
-.custom-pagination {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  color: var(--navi-blue);
+  color: var(--white);
+  font-size: 18px;
+  margin: auto;
 }

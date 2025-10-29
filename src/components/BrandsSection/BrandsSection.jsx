@@ -1,90 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
+import Slider from "react-slick";
+
+import { SampleNextArrow, SamplePrevArrow } from "./SliderArrows";
+import { CustomSlide } from "./CustomSlide";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import css from "./BrandsSection.module.css";
-import { Navigation, Pagination, A11y, EffectCoverflow } from "swiper/modules";
+import "./Slider.css";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/effect-coverflow";
-import clsx from "clsx";
+const brands = [
+  { id: 0, name: "Fiat" },
+  { id: 1, name: "Lexus" },
+  { id: 2, name: "Volkswagen" },
+  { id: 3, name: "Nissan" },
+  { id: 4, name: "Mercedes" },
+  { id: 5, name: "Lamborghini" },
+  { id: 6, name: "Toyota" },
+  { id: 7, name: "BMW" },
+  { id: 8, name: "Audi" },
+];
 
 const BrandsSection = () => {
+  const [activeSlide, setActiveSlide] = useState(4);
+
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    speed: 500,
+    centerPadding: "24px",
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    initialSlide: 4,
+    swipeToSlide: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1240,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+    beforeChange: (current, next) => {
+      setActiveSlide(next);
+    },
+  };
+
   return (
     <section className={css.container}>
       <h2 className={css.title}>Btands We Offer</h2>
-      <p className={css.description}>
-        Select your favorite brand and discover available models.
-      </p>
       <div className={css.wrapper}>
-        <div className={clsx("customPrev", css.customPrev)}>
-          <svg className={css.icon} width={20} height={32}>
-            <use href="/public/sprite.svg#icon-chevron-left"></use>
-          </svg>
+        <p className={css.description}>
+          Select your favorite brand and discover available models.
+        </p>
+        <div className="slider-container">
+          <Slider {...settings}>
+            {brands.map((brand) => (
+              <CustomSlide brand={brand.name} />
+            ))}
+          </Slider>
         </div>
-        <Swiper
-          modules={[Navigation, Pagination, A11y, EffectCoverflow]}
-          //   effect="coverflow"
-          spaceBetween={50}
-          slidesPerView={3}
-          loop
-          navigation={{
-            nextEl: ".customNext",
-            prevEl: ".customPrev",
-          }}
-          pagination={{
-            el: ".custom-pagination",
-            clickable: true,
-          }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-        >
-          <SwiperSlide className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Audi.png"
-              alt="Audi"
-            />
-          </SwiperSlide>
-          <SwiperSlide className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Toyota.png"
-              alt="Toyota"
-            />
-          </SwiperSlide>
-          <SwiperSlide className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Volkswagen.png"
-              alt="Volkswagen"
-            />
-          </SwiperSlide>
-          <SwiperSlide className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Nissan.png"
-              alt="Nissan"
-            />
-          </SwiperSlide>
-          <SwiperSlide className={css.item}>
-            <img
-              className={css.image}
-              src="/images/CarBrands/Mersedes.png"
-              alt="Mercedes"
-            />
-          </SwiperSlide>
-        </Swiper>
-        <div className={clsx("customNext", css.customNext)}>
-          <svg className={css.icon} width={20} height={32}>
-            <use href="/public/sprite.svg#icon-chevron-right"></use>
-          </svg>
-        </div>
+        <button className={css.button}>Find a Car</button>
       </div>
-      <div className="custom-pagination"></div>
     </section>
   );
 };
