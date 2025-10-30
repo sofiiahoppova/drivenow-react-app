@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import clsx from "clsx";
 
 import css from "./Navigation.module.css";
@@ -34,9 +35,9 @@ const Navigation = ({ color, onClose, isMobile }) => {
             </NavLink>
           </li>
           <li className={css.item}>
-            <NavLink to="/aboutus" className={buildLinkClass}>
+            <HashLink to={"/#about"} className={css.link}>
               AboutUs
-            </NavLink>
+            </HashLink>
           </li>
           <li className={css.item}>
             <NavLink to="/policies" className={buildLinkClass}>
