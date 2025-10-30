@@ -1,0 +1,62 @@
+.container {
+  padding: 100px 64px;
+
+  background-image: linear-gradient(rgba(36, 74, 91, 0.6)),
+    url("/images/HeroBackground.jpg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  padding: 32px 64px;
+  border-radius: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+
+  background-color: var(--white);
+}
+
+.wrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.inputWrapper {
+  padding: 10px;
+  border: 1px solid rgba(36, 74, 91, 0.6);
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+
+  font-size: 20px;
+  color: var(--navi-blue);
+}
+
+.dateInput {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.button {
+  border-radius: 32px;
+  padding: 16px 72px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background-color: var(--navi-blue);
+
+  font-size: 20px;
+  color: #fff;
+}
