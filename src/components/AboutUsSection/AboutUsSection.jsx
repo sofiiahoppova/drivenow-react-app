@@ -3,7 +3,7 @@ import css from "./AboutUsSection.module.css";
 
 const AboutUsSection = () => {
   return (
-    <section className={css.container}>
+    <section className={css.container} id="about">
       <h2 className={css.title}>About Us</h2>
       <div className={css.contentWrapper}>
         <p className={css.description}>
