@@ -24,11 +24,13 @@
 }
 
 .wrapper {
+  width: 100%;
   display: flex;
   gap: 24px;
 }
 
 .inputWrapper {
+  width: 100%;
   padding: 10px;
   border: 1px solid rgba(36, 74, 91, 0.6);
   border-radius: 8px;
@@ -43,6 +45,7 @@
 }
 
 .dateInput {
+  width: 100%;
   font-weight: 300;
   font-size: 16px;
 }
@@ -59,4 +62,13 @@
 
   font-size: 20px;
   color: #fff;
+}
+
+@media only screen and (max-width: 767px) {
+  .form {
+    padding: 32px;
+    flex-wrap: wrap;
+    row-gap: 32px;
+    justify-content: end;
+  }
 }
