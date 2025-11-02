@@ -1,17 +1,34 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 import css from "./SearchBar.module.css";
 
-const OnSearch = (formData) => {
-  const pickupDate = formData.get("pickup");
-  const dropoffDate = formData.get("dropoff");
-  console.log(pickupDate, dropoffDate);
-};
+const SearchBar = ({ setDates }) => {
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const pickupDate = form.pickup.value;
+    const dropoffDate = form.dropoff.value;
 
-const SearchBar = () => {
+    const pickup = new Date(pickupDate);
+    const dropoff = new Date(dropoffDate);
+
+    if (pickup < dropoff) {
+      setDates([pickupDate, dropoffDate]);
+      toast.success("Dates selected successfully!");
+
+      window.scrollTo({
+        top: 300,
+        behavior: "smooth",
+      });
+    } else {
+      toast.error("First date should be earlier than second.");
+    }
+  };
+
   return (
     <div className={css.container}>
-      <form action={OnSearch} className={css.form}>
+      <form onSubmit={handleSearch} className={css.form}>
         <div className={css.wrapper}>
           <div className={css.inputWrapper}>
             <label htmlFor="pickup-date">Pick-Up Date</label>
