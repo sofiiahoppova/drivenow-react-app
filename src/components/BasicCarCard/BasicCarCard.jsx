@@ -1,10 +1,13 @@
 import React from "react";
 
-import css from "./BasicCarCard.module.css";
-import car from "./ExampleCarData.json";
-import { clsx } from "clsx";
+import PriceTable from "./components/PriceTable";
+import Plans from "./components/Plans";
 
-const BasicCarCard = () => {
+import css from "./BasicCarCard.module.css";
+
+import car from "./ExampleCarData.json";
+
+const BasicCarCard = ({ selectedDates }) => {
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
@@ -58,40 +61,11 @@ const BasicCarCard = () => {
           </p>
         </li>
       </ul>
-      <table className={css.table}>
-        <thead className={css.tableHead}>
-          <tr>
-            <th scope="col" className={css.tableTitle}>
-              Rental period
-            </th>
-            <th scope="col" className={css.tableTitle}>
-              Price /per day
-            </th>
-          </tr>
-        </thead>
-        <tbody className={css.tableBody}>
-          <tr>
-            <td colSpan={2} className={css.tableSeparator}></td>
-          </tr>
-          <tr>
-            <td>1-6 days</td>
-            <td>{car.price_per_day["1to6_days"]}$</td>
-          </tr>
-          <tr>
-            <td>7-13 days</td>
-            <td>{car.price_per_day["7to13_days"]}$</td>
-          </tr>
-          <tr>
-            <td>14-29 days</td>
-            <td>{car.price_per_day["14to29_days"]}$</td>
-          </tr>
-          <tr>
-            <td>30+ days</td>
-            <td>{car.price_per_day["30+_days"]}$</td>
-          </tr>
-        </tbody>
-      </table>
-      <button className={css.selectBtn}>Select Dates</button>
+      {selectedDates ? (
+        <Plans />
+      ) : (
+        <PriceTable price_per_day={car.price_per_day} />
+      )}
     </div>
   );
 };
