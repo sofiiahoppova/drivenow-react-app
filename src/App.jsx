@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import AutoParkPage from "./pages/AutoParkPage";
 import BookingPage from "./pages/BookingPage";
 import PoliciesPage from "./pages/PoliciesPage";
+import SignUpPage from "./pages/SignUpPage";
+import LogInPage from "./pages/LogInPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer/Footer";
 
@@ -21,26 +23,33 @@ const Wrapper = ({ children }) => {
   return children;
 };
 
-function App() {
+const App = () => {
+  const location = useLocation();
+  const hideLayoutPaths = ["/login", "/signup"];
+
+  const shouldHideLayout = hideLayoutPaths.includes(location.pathname);
+
   return (
     <>
-      <div>
-        <Header />
-        <Suspense fallback={<p>Loading...</p>}>
-          <Wrapper>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/autopark" element={<AutoParkPage />} />
-              <Route path="/booking" element={<BookingPage />} />
-              <Route path="/policies" element={<PoliciesPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Wrapper>
-        </Suspense>
-        <Footer />
-      </div>
+      {!shouldHideLayout && <Header />}
+
+      <Suspense fallback={<p>Loading...</p>}>
+        <Wrapper>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/autopark" element={<AutoParkPage />} />
+            <Route path="/booking" element={<BookingPage />} />
+            <Route path="/policies" element={<PoliciesPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<LogInPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Wrapper>
+      </Suspense>
+
+      {!shouldHideLayout && <Footer />}
     </>
   );
-}
+};
 
 export default App;
