@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import clsx from "clsx";
 
@@ -53,15 +53,15 @@ const Navigation = ({ color, onClose, isMobile }) => {
       </nav>
       <ul className={css.auth}>
         <li>
-          <NavLink to="/login" className={css.link}>
+          <Link to="/login" className={css.link}>
             Login
-          </NavLink>
+          </Link>
         </li>
         <li>|</li>
         <li>
-          <NavLink to="/register" className={css.link}>
+          <Link to="/signup" className={css.link}>
             Register
-          </NavLink>
+          </Link>
         </li>
       </ul>
     </div>
