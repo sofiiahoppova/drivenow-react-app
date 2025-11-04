@@ -12,6 +12,7 @@
   "dependencies": {
     "@szhsin/react-accordion": "^1.4.1",
     "clsx": "^2.1.1",
+    "formik": "^2.4.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hot-toast": "^2.6.0",
@@ -19,7 +20,8 @@
     "react-router-dom": "^7.9.4",
     "react-router-hash-link": "^2.4.3",
     "react-slick": "^0.31.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
