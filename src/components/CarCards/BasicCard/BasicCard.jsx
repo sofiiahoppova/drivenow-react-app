@@ -6,6 +6,7 @@ import Plans from "../components/Plans/Plans";
 import css from "./BasicCard.module.css";
 
 import car from "../ExampleCarData.json";
+import CarFeaturesList from "../shared/CarFeaturesList/CarFeaturesList";
 
 const BasicCard = ({ selectedDates }) => {
   return (
@@ -30,37 +31,7 @@ const BasicCard = ({ selectedDates }) => {
         </div>
       </div>
       <img src={car.image_url} alt={`${car.brand} ${car.model} photo`} />
-      <ul className={css.caracteristicsList}>
-        <li className={css.listItem}>
-          <p className={css.caracteristic}>{car.year}</p>
-        </li>
-        <li className={css.listItem}>
-          <svg className={css.icon} width={24} height={24}>
-            <use href="/sprite.svg#icon-seat"></use>
-          </svg>
-          <p className={css.caracteristic}>{car.seats}</p>
-        </li>
-        <li className={css.listItem}>
-          <svg className={css.icon} width={24} height={24}>
-            <use href="/sprite.svg#icon-gas"></use>
-          </svg>
-          <p className={css.caracteristic}>{car.fuel_type}</p>
-        </li>
-        <li className={css.listItem}>
-          <svg className={css.icon} width={24} height={24}>
-            <use href="/sprite.svg#icon-AT"></use>
-          </svg>
-          <p className={css.caracteristic}>{car.transmission}</p>
-        </li>
-        <li className={css.listItem}>
-          <svg className={css.icon} width={24} height={24}>
-            <use href="/sprite.svg#icon-can"></use>
-          </svg>
-          <p className={css.caracteristic}>
-            {car.consumption_per_100km}l /100km
-          </p>
-        </li>
-      </ul>
+      <CarFeaturesList car={car} />
       {selectedDates ? (
         <Plans />
       ) : (
