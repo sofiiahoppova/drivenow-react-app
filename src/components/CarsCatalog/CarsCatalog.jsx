@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import BasicCarCard from "../BasicCarCard/BasicCarCard";
+import BasicCard from "../CarCards/BasicCard/BasicCard";
 import Pagination from "./Pagination/Pagination";
 
 import css from "./CarsCatalog.module.css";
@@ -13,7 +13,7 @@ const CarsCatalog = ({ selectedDates }) => {
     <section className={css.container}>
       <div className={css.list}>
         {cards.map((_, index) => (
-          <BasicCarCard key={index} selectedDates={selectedDates} />
+          <BasicCard key={index} selectedDates={selectedDates} />
         ))}
       </div>
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />

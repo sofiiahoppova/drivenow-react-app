@@ -1,8 +1,9 @@
 import React from "react";
+import clsx from "clsx";
+
+import RangeBar from "./RangeBar/RangeBar";
 
 import css from "./FiltersBar.module.css";
-import RangeBar from "../RangeBar/RangeBar";
-import clsx from "clsx";
 
 const FiltersBar = () => {
   const HandleSubmit = (event) => {

@@ -1,13 +1,13 @@
 import React from "react";
 
-import PriceTable from "../components/PriceTable";
-import Plans from "../components/Plans";
+import PriceTable from "../components/PriceTable/PriceTable";
+import Plans from "../components/Plans/Plans";
 
-import css from "./BasicCarCard.module.css";
+import css from "./BasicCard.module.css";
 
 import car from "../ExampleCarData.json";
 
-const BasicCarCard = ({ selectedDates }) => {
+const BasicCard = ({ selectedDates }) => {
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
@@ -70,4 +70,4 @@ const BasicCarCard = ({ selectedDates }) => {
   );
 };
 
-export default BasicCarCard;
+export default BasicCard;
