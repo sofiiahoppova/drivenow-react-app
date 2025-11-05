@@ -1,11 +1,11 @@
 import React from "react";
 
-import PriceTable from "./components/PriceTable";
-import Plans from "./components/Plans";
+import PriceTable from "../components/PriceTable";
+import Plans from "../components/Plans";
 
 import css from "./BasicCarCard.module.css";
 
-import car from "./ExampleCarData.json";
+import car from "../ExampleCarData.json";
 
 const BasicCarCard = ({ selectedDates }) => {
   return (
