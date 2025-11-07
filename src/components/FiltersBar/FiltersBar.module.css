@@ -8,29 +8,77 @@
   background-color: var(--navi-blue);
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   gap: 32px;
 }
 
 .mainWrapper {
   display: flex;
-  justify-content: space-between;
-  /* flex-wrap: wrap; */
-  /* align-items: center; */
-  gap: 48px;
+  justify-content: start;
+  align-items: center;
+  gap: 32px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  gap: 18px;
+  user-select: none;
+}
+
+.checkbox input {
+  display: none;
+}
+
+.checkbox .checkmark {
+  min-width: 20px;
+  height: 20px;
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: inline-block;
+  position: relative;
+}
+
+/* Галочка */
+.checkbox .checkmark::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0px;
+  width: 4px;
+  height: 10px;
+  border-right: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
+  transform: scale(0) rotate(45deg);
+  transform-origin: center;
+  transition: all 300ms linear;
+}
+
+.checkbox input:checked + .checkmark {
+  border-color: var(--white);
+}
+
+.checkbox input:checked + .checkmark::after {
+  transform: scale(1) rotate(45deg);
+}
+
+.checkbox .label {
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--white);
 }
 
 .selectWrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 4px;
-}
-
-.label {
-  font-weight: 300;
-  font-size: 20px;
-  color: var(--white);
 }
 
 .select {
@@ -38,7 +86,7 @@
   border: none;
   padding: 12px;
 
-  font-size: 18px;
+  font-size: 20px;
   color: var(--white);
 }
 
@@ -78,4 +126,22 @@
 
 .icon {
   fill: var(--navi-blue);
+}
+
+@media only screen and (max-width: 1280px) {
+  .filtersForm {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mainWrapper {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .buttonsWrapper {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
