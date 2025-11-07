@@ -17,6 +17,10 @@
   gap: 8px;
 }
 
-.caracteristic {
+.text {
   color: var(--navi-blue);
+}
+
+.small {
+  font-size: 16px;
 }
