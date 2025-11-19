@@ -5,14 +5,18 @@ import SearchBar from "../components/SearchBar/SearchBar";
 import CarsCatalog from "../components/CarsCatalog/CarsCatalog";
 import FiltersBar from "../components/FiltersBar/FiltersBar";
 
-const AutoParkPage = () => {
+const AutoParkPage = ({ activeSlide, isModal, setModal }) => {
   const [selectedDates, setSelelctedDates] = useState(null);
 
   return (
     <>
       <SearchBar setDates={setSelelctedDates} />
-      <FiltersBar />
-      <CarsCatalog selectedDates={selectedDates} />
+      <FiltersBar filter={activeSlide} />
+      <CarsCatalog
+        selectedDates={selectedDates}
+        isModal={isModal}
+        setModal={setModal}
+      />
       <Toaster />
     </>
   );
