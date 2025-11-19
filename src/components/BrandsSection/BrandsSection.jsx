@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 import { SampleNextArrow, SamplePrevArrow } from "./SliderArrows";
@@ -22,9 +23,7 @@ const brands = [
   { id: 8, name: "Audi" },
 ];
 
-const BrandsSection = () => {
-  const [activeSlide, setActiveSlide] = useState(4);
-
+const BrandsSection = ({ setActiveSlide }) => {
   const settings = {
     className: "center",
     centerMode: true,
@@ -54,7 +53,8 @@ const BrandsSection = () => {
       },
     ],
     beforeChange: (current, next) => {
-      setActiveSlide(next);
+      const brand = brands[next].name;
+      setActiveSlide(brand.toLowerCase());
     },
   };
 
@@ -72,7 +72,9 @@ const BrandsSection = () => {
             ))}
           </Slider>
         </div>
-        <button className={css.button}>Find a Car</button>
+        <Link to="/autopark" className={css.button}>
+          Find a Car
+        </Link>
       </div>
     </section>
   );
