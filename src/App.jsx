@@ -1,4 +1,4 @@
-import { Suspense, useLayoutEffect } from "react";
+import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Header from "./components/Header/Header";
@@ -25,9 +25,19 @@ const Wrapper = ({ children }) => {
 
 const App = () => {
   const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeSlide, setActiveSlide] = useState("");
   const hideLayoutPaths = ["/login", "/signup"];
 
   const shouldHideLayout = hideLayoutPaths.includes(location.pathname);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [isModalOpen]);
 
   return (
     <>
@@ -36,8 +46,20 @@ const App = () => {
       <Suspense fallback={<p>Loading...</p>}>
         <Wrapper>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/autopark" element={<AutoParkPage />} />
+            <Route
+              path="/"
+              element={<HomePage setActiveSlide={setActiveSlide} />}
+            />
+            <Route
+              path="/autopark"
+              element={
+                <AutoParkPage
+                  activeSlide={activeSlide}
+                  isModal={isModalOpen}
+                  setModal={setIsModalOpen}
+                />
+              }
+            />
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/policies" element={<PoliciesPage />} />
             <Route path="/signup" element={<SignUpPage />} />
