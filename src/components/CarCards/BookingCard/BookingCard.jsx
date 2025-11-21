@@ -9,6 +9,7 @@ import css from "./BookingCard.module.css";
 import car from "../ExampleCarData.json";
 
 const BookingCard = ({ plan = "Full coverage", days = 4 }) => {
+  const [price, setPrice] = useState(0);
   const [basicPrice, setBasicPrice] = useState(0);
   const [coveragePrice, setCoveragePrice] = useState(0);
   const [deposit, setDeposit] = useState(0);
@@ -17,11 +18,19 @@ const BookingCard = ({ plan = "Full coverage", days = 4 }) => {
     if (!car || !days) return;
 
     let base = 0;
-    if (days <= 6) base = car.price_per_day["1to6_days"] * days;
-    else if (days <= 13) base = car.price_per_day["7to13_days"] * days;
-    else if (days <= 29) base = car.price_per_day["14to29_days"] * days;
-    else if (days >= 30) base = car.price_per_day["30+_days"] * days;
-    else {
+    if (days <= 6) {
+      base = car.prices.dailyPrice * days;
+      setPrice(car.prices.dailyPrice);
+    } else if (days <= 13) {
+      base = car.prices.weekendPrice * days;
+      setPrice(car.prices.weekendPrice);
+    } else if (days <= 29) {
+      base = car.prices.weeklyPrice * days;
+      setPrice(car.prices.weeklyPrice);
+    } else if (days >= 30) {
+      base = car.prices.monthlyPrice * days;
+      setPrice(car.prices.monthlyPrice);
+    } else {
       toast.error("Selected dates are invalid");
       return;
     }
@@ -42,26 +51,25 @@ const BookingCard = ({ plan = "Full coverage", days = 4 }) => {
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
-        <img
-          src={car.image_url}
-          alt={`${car.brand} ${car.model} photo`}
-          className={css.image}
-        />
         <div className={css.titleWrapper}>
           <h3 className={css.title}>
             {car.brand} <span className={css.lightTitle}>{car.model}</span>
           </h3>
           <div className={css.classWrapper}>
-            <p className={css.carClass}>{car.class}</p>
+            <p className={css.carClass}>{car.carClass}</p>
           </div>
         </div>
+        <img
+          src={car.imageUrl}
+          alt={`${car.brand} ${car.model} photo`}
+          className={css.image}
+        />
       </div>
-      <CarFeaturesList car={car} size={"small"} />
+      {/* <CarFeaturesList car={car} size={"small"} /> */}
       <span className={css.divider} />
       <div className={css.priceWrapper}>
         <p className={css.text}>
-          {car.brand} {car.model}{" "}
-          <span className={css.bold}>{car.price_per_day["1to6_days"]} $</span> x{" "}
+          {car.brand} {car.model} <span className={css.bold}>{price} $</span> x{" "}
           <span className={css.bold}>{days} days</span>
         </p>
         <p className={css.bold}>{basicPrice} $</p>
@@ -89,7 +97,9 @@ const BookingCard = ({ plan = "Full coverage", days = 4 }) => {
         <p className={css.total}>Total</p>
         <span className={css.total}>{totalPrice} $</span>
       </div>
-      <button className={css.bookBtn}>Confirm booking</button>
+      <button className={css.bookBtn} type="submit">
+        Confirm booking
+      </button>
       <div className={css.inputWrapper}>
         <input
           type="checkbox"

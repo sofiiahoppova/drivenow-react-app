@@ -1,7 +1,10 @@
 .container {
-  max-width: 521px;
+  position: sticky;
+  top: 72px;
+  height: fit-content;
+  max-width: 430px;
   padding: 32px;
-  border: 1px solid rgba(36, 74, 91, 0.6);
+  border: 1px solid var(--dark-gray);
   border-radius: 24px;
   background: #fff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
@@ -13,26 +16,22 @@
 }
 
 .wrapper {
-  display: flex;
-  gap: 12px;
-}
-
-.image {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .titleWrapper {
   display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: end;
+  justify-content: space-between;
   gap: 12px;
 }
 
 .title {
   text-wrap: nowrap;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .lightTitle {
@@ -40,13 +39,19 @@
 }
 
 .classWrapper {
-  padding: 4px 16px;
+  padding: 4px 12px;
   border: 1px solid var(--navi-blue);
   border-radius: 50px;
 }
 
 .carClass {
-  font-size: 16px;
+  font-size: 14px;
+}
+
+.image {
+  margin: auto;
+  width: 75%;
+  max-width: 300px;
 }
 
 .divider {
@@ -111,4 +116,10 @@
 .label {
   text-align: left;
   font-size: 16px;
+}
+
+@media only screen and (max-width: 1040px) {
+  .container {
+    max-width: 700px;
+  }
 }
