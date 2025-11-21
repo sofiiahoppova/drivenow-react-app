@@ -3,10 +3,12 @@ import { Field, ErrorMessage } from "formik";
 
 import css from "./InputField.module.css";
 
-const InputField = ({ label, id, placeholder }) => {
+const InputField = ({ label, id, placeholder, reqiered = false }) => {
   return (
     <label className={css.wrapper}>
-      <span className={css.label}>{label}</span>
+      <span className={css.label}>
+        {label} {reqiered && <span className={css.reqiered}>*</span>}
+      </span>
       <Field
         id={id}
         name={id}
