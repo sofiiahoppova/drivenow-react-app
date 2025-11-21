@@ -2,13 +2,15 @@ import React from "react";
 
 import PriceTable from "../components/PriceTable/PriceTable";
 import Plans from "../components/Plans/Plans";
+import CarFeaturesList from "../shared/CarFeaturesList/CarFeaturesList";
+import ReviewsList from "../../ReviewsList/ReviewsList";
+import Modal from "../../Modal/Modal";
 
 import css from "./BasicCard.module.css";
 
 import car from "../ExampleCarData.json";
-import CarFeaturesList from "../shared/CarFeaturesList/CarFeaturesList";
 
-const BasicCard = ({ selectedDates }) => {
+const BasicCard = ({ selectedDates, isModal, setModal }) => {
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
@@ -20,22 +22,23 @@ const BasicCard = ({ selectedDates }) => {
             <svg className={css.icon} width={24} height={24}>
               <use href="/sprite.svg#icon-star"></use>
             </svg>
-            <p className={css.rate}>{car.rating}</p>
-            <button className={css.reviewsBtn}>
-              {car.reviews_count} reviews
+            <p className={css.rate}>{car.averageRating}</p>
+            <button className={css.reviewsBtn} onClick={() => setModal(true)}>
+              {car.reviewCount} reviews
             </button>
           </div>
         </div>
         <div className={css.classWrapper}>
-          <p className={css.carClass}>{car.class}</p>
+          <p className={css.carClass}>{car.carClass}</p>
         </div>
       </div>
-      <img src={car.image_url} alt={`${car.brand} ${car.model} photo`} />
+      <img src={car.imageUrl} alt={`${car.brand} ${car.model} photo`} />
       <CarFeaturesList car={car} />
-      {selectedDates ? (
-        <Plans />
-      ) : (
-        <PriceTable price_per_day={car.price_per_day} />
+      {selectedDates ? <Plans /> : <PriceTable prices={car.prices} />}
+      {isModal && (
+        <Modal isModalOpen={isModal} setIsModalOpen={setModal}>
+          <ReviewsList reviews={car.reviews} />
+        </Modal>
       )}
     </div>
   );
