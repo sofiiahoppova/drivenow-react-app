@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import css from "./FiltersBar.module.css";
 
-const FiltersBar = () => {
+const FiltersBar = ({ filter }) => {
   const HandleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -25,15 +25,19 @@ const FiltersBar = () => {
               <option value="economy">Economy</option>
               <option value="compact">Compact</option>
               <option value="midsize">Midsize</option>
-              <option value="full-size">Full Size</option>
               <option value="suv">SUV</option>
-              <option value="luxury">Luxury</option>
               <option value="premium">Premium</option>
             </select>
           </div>
           <div className={css.selectWrapper}>
-            <select name="Brand" id="brand" className={css.select}>
+            <select
+              name="Brand"
+              id="brand"
+              className={css.select}
+              defaultValue={filter}
+            >
               <option value="">Brand</option>
+              <option value="fiat">Fiat</option>
               <option value="toyota">Toyota</option>
               <option value="nissan">Nissan</option>
               <option value="bmw">BMW</option>
