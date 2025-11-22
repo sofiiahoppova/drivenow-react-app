@@ -2,7 +2,7 @@ import React from "react";
 
 import css from "./PriceTable.module.css";
 
-const PriceTable = ({ price_per_day }) => {
+const PriceTable = ({ prices }) => {
   return (
     <>
       <table className={css.table}>
@@ -22,19 +22,19 @@ const PriceTable = ({ price_per_day }) => {
           </tr>
           <tr>
             <td>1-6 days</td>
-            <td>{price_per_day["1to6_days"]}$</td>
+            <td>{prices.dailyPrice}$</td>
           </tr>
           <tr>
             <td>7-13 days</td>
-            <td>{price_per_day["7to13_days"]}$</td>
+            <td>{prices.weekendPrice}$</td>
           </tr>
           <tr>
             <td>14-29 days</td>
-            <td>{price_per_day["14to29_days"]}$</td>
+            <td>{prices.weeklyPrice}$</td>
           </tr>
           <tr>
             <td>30+ days</td>
-            <td>{price_per_day["30+_days"]}$</td>
+            <td>{prices.monthlyPrice}$</td>
           </tr>
         </tbody>
       </table>

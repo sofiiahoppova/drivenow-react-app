@@ -2,29 +2,37 @@
   "id": 1,
   "brand": "Lexus",
   "model": "RX 350",
-  "class": "premium",
+  "carClass": "premium",
   "year": 2022,
   "seats": 5,
-  "fuel_type": "gasoline",
+  "fuelType": "gasoline",
   "transmission": "AT",
-  "consumption_per_100km": 9.5,
-  "rating": 4.7,
-  "reviews_count": 13,
-  "price_per_day": {
-    "1to6_days": 90,
-    "7to13_days": 80,
-    "14to29_days": 75,
-    "30+_days": 70
+  "consumption": 9.5,
+  "averageRating": 4.7,
+  "reviewCount": 13,
+  "prices": {
+    "dailyPrice": 90,
+    "weekendPrice": 80,
+    "weeklyPrice": 75,
+    "monthlyPrice": 70
   },
-  "plans": {
-    "basic": {
-      "price_per_day": 90,
-      "included": ["basic insurance", "limited mileage"]
+  "reviews": [
+    {
+      "id": 1,
+      "description": "Very nice car! Me and my husband went to europe for a 7 days trip by this car, and we end up very happy!",
+      "rating": 4.7,
+      "user": {
+        "fullName": "Mary Cooper"
+      }
     },
-    "full_coverage": {
-      "price_per_day": 120,
-      "included": ["full insurance", "unlimited mileage", "road assistance"]
+    {
+      "id": 2,
+      "description": "Very nice car! Me and my husband went to europe for a 7 days trip by this car, and we end up very happy!",
+      "rating": 4.7,
+      "user": {
+        "fullName": "Mary Cooper"
+      }
     }
-  },
-  "image_url": "/images/CarExample.png"
+  ],
+  "imageUrl": "/images/CarExample.png"
 }
