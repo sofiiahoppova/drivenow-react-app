@@ -8,6 +8,7 @@ import BookingPage from "./pages/BookingPage";
 import PoliciesPage from "./pages/PoliciesPage";
 import SignUpPage from "./pages/SignUpPage";
 import LogInPage from "./pages/LogInPage";
+import UserAccount from "./components/UserAccount/UserAccount";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer/Footer";
 
@@ -30,6 +31,7 @@ const App = () => {
   const hideLayoutPaths = ["/login", "/signup"];
 
   const shouldHideLayout = hideLayoutPaths.includes(location.pathname);
+  const shouldHideFooter = location.pathname == "/account";
 
   useEffect(() => {
     if (isModalOpen) {
@@ -64,12 +66,13 @@ const App = () => {
             <Route path="/policies" element={<PoliciesPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LogInPage />} />
+            <Route path="/account" element={<UserAccount />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Wrapper>
       </Suspense>
 
-      {!shouldHideLayout && <Footer />}
+      {!shouldHideLayout || (!shouldHideFooter && <Footer />)}
     </>
   );
 };
