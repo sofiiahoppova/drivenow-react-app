@@ -236,6 +236,10 @@
     gap: 32px;
   }
 
+  .avatar {
+    width: 100px;
+  }
+
   .userInfo {
     flex-direction: row;
   }
