@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import PriceTable from "../components/PriceTable/PriceTable";
 import Plans from "../components/Plans/Plans";
@@ -6,11 +7,15 @@ import CarFeaturesList from "../shared/CarFeaturesList/CarFeaturesList";
 import ReviewsList from "../../ReviewsList/ReviewsList";
 import Modal from "../../Modal/Modal";
 
+import { selectDates } from "../../../redux/dates/datesSlice";
+
 import css from "./BasicCard.module.css";
 
 import car from "../ExampleCarData.json";
 
-const BasicCard = ({ selectedDates, isModal, setModal }) => {
+const BasicCard = ({ isModal, setModal }) => {
+  const selectedDates = useSelector(selectDates);
+
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
@@ -34,7 +39,11 @@ const BasicCard = ({ selectedDates, isModal, setModal }) => {
       </div>
       <img src={car.imageUrl} alt={`${car.brand} ${car.model} photo`} />
       <CarFeaturesList car={car} />
-      {selectedDates ? <Plans /> : <PriceTable prices={car.prices} />}
+      {selectedDates.length > 0 ? (
+        <Plans />
+      ) : (
+        <PriceTable prices={car.prices} />
+      )}
       {isModal && (
         <Modal isModalOpen={isModal} setIsModalOpen={setModal}>
           <ReviewsList reviews={car.reviews} />
