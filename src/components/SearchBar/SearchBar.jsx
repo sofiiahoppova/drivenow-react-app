@@ -2,27 +2,34 @@ import React from "react";
 import toast from "react-hot-toast";
 
 import css from "./SearchBar.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { datesAdded, selectDates } from "../../redux/dates/datesSlice";
 
-const SearchBar = ({ setDates }) => {
+const SearchBar = () => {
+  const dates = useSelector(selectDates);
+  const dispatch = useDispatch();
+
   const handleSearch = (event) => {
     event.preventDefault();
     const form = event.target;
     const pickupDate = form.pickup.value;
     const dropoffDate = form.dropoff.value;
+    const dateNow = Date.now();
+    const today = new Date(dateNow);
 
-    const pickup = new Date(pickupDate);
-    const dropoff = new Date(dropoffDate);
+    if (pickupDate >= dropoffDate) {
+      toast.error("Pick up date should be earlier than drop off date.");
+    } else if (pickupDate < today.toISOString().split("T")[0]) {
+      toast.error("Pick up date shouldn't be earliar than today");
+    } else {
+      dispatch(datesAdded([pickupDate, dropoffDate]));
 
-    if (pickup < dropoff) {
-      setDates([pickupDate, dropoffDate]);
       toast.success("Dates selected successfully!");
 
       window.scrollTo({
         top: 300,
         behavior: "smooth",
       });
-    } else {
-      toast.error("First date should be earlier than second.");
     }
   };
 
@@ -37,6 +44,7 @@ const SearchBar = ({ setDates }) => {
               type="date"
               name="pickup"
               id="pickup-date"
+              defaultValue={dates[0]}
             />
           </div>
           <div className={css.inputWrapper}>
@@ -46,6 +54,7 @@ const SearchBar = ({ setDates }) => {
               type="date"
               name="dropoff"
               id="dropoff-date"
+              defaultValue={dates[1]}
             />
           </div>
         </div>
