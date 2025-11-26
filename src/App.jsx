@@ -1,5 +1,6 @@
 import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage";
@@ -11,6 +12,9 @@ import LogInPage from "./pages/LogInPage";
 import UserAccount from "./components/UserAccount/UserAccount";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer/Footer";
+import Modal from "./components/Modal/Modal";
+
+import { modalComponents } from "./constants/modalComponents";
 
 import "./App.css";
 
@@ -26,20 +30,23 @@ const Wrapper = ({ children }) => {
 
 const App = () => {
   const location = useLocation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeSlide, setActiveSlide] = useState("");
   const hideLayoutPaths = ["/login", "/signup"];
 
   const shouldHideLayout = hideLayoutPaths.includes(location.pathname);
   const shouldHideFooter = location.pathname == "/account";
 
+  const { isOpen, component, props } = useSelector((state) => state.modal);
+  const Component = modalComponents[component];
+
+  const [activeSlide, setActiveSlide] = useState("");
+
   useEffect(() => {
-    if (isModalOpen) {
+    if (isOpen) {
       document.body.classList.add("modal-open");
     } else {
       document.body.classList.remove("modal-open");
     }
-  }, [isModalOpen]);
+  }, [isOpen]);
 
   return (
     <>
@@ -54,15 +61,9 @@ const App = () => {
             />
             <Route
               path="/autopark"
-              element={
-                <AutoParkPage
-                  activeSlide={activeSlide}
-                  isModal={isModalOpen}
-                  setModal={setIsModalOpen}
-                />
-              }
+              element={<AutoParkPage activeSlide={activeSlide} />}
             />
-            <Route path="/booking" element={<BookingPage />} />
+            <Route path="/booking/:id" element={<BookingPage />} />
             <Route path="/policies" element={<PoliciesPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LogInPage />} />
@@ -72,7 +73,13 @@ const App = () => {
         </Wrapper>
       </Suspense>
 
-      {!shouldHideLayout || (!shouldHideFooter && <Footer />)}
+      {!shouldHideLayout && !shouldHideFooter && <Footer />}
+
+      {isOpen && (
+        <Modal>
+          <Component {...props} />
+        </Modal>
+      )}
     </>
   );
 };
