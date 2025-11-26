@@ -19,6 +19,7 @@
 
 .text {
   color: var(--navi-blue);
+  font-size: 18px;
 }
 
 .small {
