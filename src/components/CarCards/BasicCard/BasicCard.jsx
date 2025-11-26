@@ -1,19 +1,19 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import PriceTable from "../components/PriceTable/PriceTable";
 import Plans from "../components/Plans/Plans";
 import CarFeaturesList from "../shared/CarFeaturesList/CarFeaturesList";
-import ReviewsList from "../../ReviewsList/ReviewsList";
-import Modal from "../../Modal/Modal";
 
 import { selectDates } from "../../../redux/dates/datesSlice";
+import { setOpen } from "../../../redux/modal/modalSlice";
 
 import css from "./BasicCard.module.css";
 
 import car from "../ExampleCarData.json";
 
-const BasicCard = ({ isModal, setModal }) => {
+const BasicCard = () => {
+  const dispatch = useDispatch();
   const selectedDates = useSelector(selectDates);
 
   return (
@@ -28,7 +28,17 @@ const BasicCard = ({ isModal, setModal }) => {
               <use href="/sprite.svg#icon-star"></use>
             </svg>
             <p className={css.rate}>{car.averageRating}</p>
-            <button className={css.reviewsBtn} onClick={() => setModal(true)}>
+            <button
+              className={css.reviewsBtn}
+              onClick={() =>
+                dispatch(
+                  setOpen({
+                    component: "ReviewsList",
+                    props: { reviews: car.reviews },
+                  })
+                )
+              }
+            >
               {car.reviewCount} reviews
             </button>
           </div>
@@ -43,11 +53,6 @@ const BasicCard = ({ isModal, setModal }) => {
         <Plans />
       ) : (
         <PriceTable prices={car.prices} />
-      )}
-      {isModal && (
-        <Modal isModalOpen={isModal} setIsModalOpen={setModal}>
-          <ReviewsList reviews={car.reviews} />
-        </Modal>
       )}
     </div>
   );
