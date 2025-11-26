@@ -35,7 +35,7 @@ const Navigation = ({ color, onClose, isMobile }) => {
             </NavLink>
           </li>
           <li className={css.item}>
-            <HashLink to={"/#about"} className={css.link}>
+            <HashLink to={"/#about"} className={css.hashLink}>
               AboutUs
             </HashLink>
           </li>

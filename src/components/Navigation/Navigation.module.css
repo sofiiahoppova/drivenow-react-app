@@ -19,7 +19,14 @@
 .link {
   font-weight: 300;
   font-size: 18px;
+
   transition: color 300ms linear;
+}
+
+.hashLink {
+  color: var(--black);
+  font-weight: 300;
+  font-size: 18px;
 }
 
 .linkBlack {
@@ -106,6 +113,10 @@
   .navList {
     flex-direction: column;
     align-items: start;
+  }
+
+  .hashLink {
+    color: var(--white);
   }
 
   .auth {
