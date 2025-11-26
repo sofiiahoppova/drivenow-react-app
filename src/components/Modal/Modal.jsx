@@ -1,14 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+
+import { setClose } from "../../redux/modal/modalSlice";
 
 import css from "./Modal.module.css";
 
-const Modal = ({ children, isModalOpen, setIsModalOpen }) => {
+const Modal = ({ children }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={css.overlay}>
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
         <button
           className={css.closeButton}
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => dispatch(setClose())}
         >
           ✕
         </button>

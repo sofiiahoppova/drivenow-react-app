@@ -19,8 +19,7 @@
   border-radius: 24px;
 
   max-height: 80vh;
-  width: 90%;
-  max-width: 600px;
+  max-width: 60%;
 
   position: relative;
   display: flex;
@@ -39,4 +38,16 @@
   background: none;
   border: none;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 767px) {
+  .modal {
+    max-width: 80%;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .modal {
+    max-width: 95%;
+  }
 }
