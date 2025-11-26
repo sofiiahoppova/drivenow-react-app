@@ -1,5 +1,7 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import { Field } from "formik";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 import InputField from "../Auth/shared/InputField/InputField";
@@ -7,6 +9,9 @@ import InputField from "../Auth/shared/InputField/InputField";
 import css from "./BookingForm.module.css";
 
 const BookingForm = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const plan = searchParams.get("plan");
+
   return (
     <div className={css.form}>
       <section className={css.sectionWrapper}>
@@ -16,31 +21,43 @@ const BookingForm = () => {
         <p className={css.description}>Choose your insurance plan</p>
         <div className={css.planWrapper}>
           <label className={css.wrapper}>
-            <Field type="radio" name="plan" value="basicPlan" />
+            <Field
+              type="radio"
+              name="plan"
+              value="Basic plan"
+              checked={plan == "basic"}
+              onChange={() => setSearchParams({ plan: "basic" })}
+            />
             <svg className={css.redIcon} width={24} height={24}>
               <use href="/sprite.svg#icon-shield-off"></use>
             </svg>
             Basic Plan
           </label>
-          <button className={css.infoBtn}>
+          <Link to="/policies" className={css.infoBtn}>
             <svg className={css.infoIcon} width={20} height={20}>
               <use href="/sprite.svg#icon-info"></use>
             </svg>
-          </button>
+          </Link>
         </div>
         <div className={css.planWrapper}>
           <label className={css.wrapper}>
-            <Field type="radio" name="plan" value="FullCoverage" />
+            <Field
+              type="radio"
+              name="plan"
+              value="Full coverage"
+              checked={plan == "full" ? true : false}
+              onChange={() => setSearchParams({ plan: "full" })}
+            />
             <svg className={css.greenIcon} width={24} height={24}>
               <use href="/sprite.svg#icon-shield"></use>
             </svg>
             Full Coverage
           </label>
-          <button className={css.infoBtn}>
+          <Link to="/policies" className={css.infoBtn}>
             <svg className={css.infoIcon} width={20} height={20}>
               <use href="/sprite.svg#icon-info"></use>
             </svg>
-          </button>
+          </Link>
         </div>
       </section>
       <section className={css.sectionWrapper}>
