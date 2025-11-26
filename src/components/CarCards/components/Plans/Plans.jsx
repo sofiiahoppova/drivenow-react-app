@@ -1,19 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-import { selectDates } from "../../../../redux/dates/datesSlice";
+import { selectDates } from "/src/redux/dates/datesSlice";
+import { calculateDays } from "/src/utils/calculateDays";
 
 import css from "./Plans.module.css";
 import car from "/src/components/CarCards/ExampleCarData.json";
 
 const Plans = () => {
   const [pickup, dropoff] = useSelector(selectDates);
-
-  const pickupDate = new Date(pickup);
-  const dropoffDate = new Date(dropoff);
-
-  const days = Math.max(1, (dropoffDate - pickupDate) / (1000 * 3600 * 24));
+  const days = calculateDays(pickup, dropoff);
 
   let period = "";
   let basicPrice = 0;
@@ -60,7 +58,9 @@ const Plans = () => {
             </p>
           </div>
         </div>
-        <button className={css.bookBtn}>Book Now</button>
+        <Link to={`/booking/${car.id}?plan=basic`}>
+          <button className={css.bookBtn}>Book Now</button>
+        </Link>
       </li>
       <li className={css.item}>
         <div className={css.wrapper}>
@@ -86,7 +86,9 @@ const Plans = () => {
             </p>
           </div>
         </div>
-        <button className={clsx(css.bookBtn, css.accentBtn)}>Book Now</button>
+        <Link to={`/booking/${car.id}?plan=full`}>
+          <button className={clsx(css.bookBtn, css.accentBtn)}>Book Now</button>
+        </Link>
       </li>
     </ul>
   );
