@@ -1,8 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import css from "./PriceTable.module.css";
+import { setOpen } from "../../../../redux/modal/modalSlice";
 
-const PriceTable = ({ prices }) => {
+const PriceTable = ({ prices, carId }) => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <table className={css.table}>
@@ -38,7 +42,19 @@ const PriceTable = ({ prices }) => {
           </tr>
         </tbody>
       </table>
-      <button className={css.selectBtn}>Select Dates</button>
+      <button
+        className={css.selectBtn}
+        onClick={() =>
+          dispatch(
+            setOpen({
+              component: "SearchBarModal",
+              props: { carId: carId.toString() },
+            })
+          )
+        }
+      >
+        Select Dates
+      </button>
     </>
   );
 };
