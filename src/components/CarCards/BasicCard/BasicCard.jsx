@@ -52,7 +52,7 @@ const BasicCard = () => {
       {selectedDates.length > 0 ? (
         <Plans />
       ) : (
-        <PriceTable prices={car.prices} />
+        <PriceTable prices={car.prices} carId={car.id} />
       )}
     </div>
   );
