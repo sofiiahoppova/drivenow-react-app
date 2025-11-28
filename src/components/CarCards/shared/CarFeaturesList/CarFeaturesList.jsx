@@ -19,7 +19,7 @@ const CarFeaturesList = ({ car, size = null }) => {
         <svg className={css.icon} width={24} height={24}>
           <use href="/sprite.svg#icon-gas"></use>
         </svg>
-        <p className={clsx(size && css.small, css.text)}>{car.fuel_type}</p>
+        <p className={clsx(size && css.small, css.text)}>{car.fuelType}</p>
       </li>
       <li className={css.listItem}>
         <svg className={css.icon} width={24} height={24}>
@@ -32,7 +32,7 @@ const CarFeaturesList = ({ car, size = null }) => {
           <use href="/sprite.svg#icon-can"></use>
         </svg>
         <p className={clsx(size && css.small, css.text)}>
-          {car.consumption_per_100km}l /100km
+          {car.consumption}l /100km
         </p>
       </li>
     </ul>
