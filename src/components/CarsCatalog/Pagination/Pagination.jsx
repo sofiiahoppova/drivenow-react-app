@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import css from "./Pagination.module.css";
 
-const Pagination = ({ pages = 5, currentPage, setCurrentPage }) => {
+const Pagination = ({ pages, currentPage, setCurrentPage }) => {
   const pagesCount = Array.from({ length: pages }, (_, i) => i + 1);
 
   return (
