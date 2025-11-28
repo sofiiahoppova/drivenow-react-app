@@ -10,9 +10,7 @@ import { setOpen } from "../../../redux/modal/modalSlice";
 
 import css from "./BasicCard.module.css";
 
-import car from "../ExampleCarData.json";
-
-const BasicCard = () => {
+const BasicCard = ({ car }) => {
   const dispatch = useDispatch();
   const selectedDates = useSelector(selectDates);
 
@@ -47,7 +45,10 @@ const BasicCard = () => {
           <p className={css.carClass}>{car.carClass}</p>
         </div>
       </div>
-      <img src={car.imageUrl} alt={`${car.brand} ${car.model} photo`} />
+      <img
+        src="/images/CarExample.png"
+        alt={`${car.brand} ${car.model} photo`}
+      />
       <CarFeaturesList car={car} />
       {selectedDates.length > 0 ? (
         <Plans />
