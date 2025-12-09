@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllCars } from "./operations";
+import { fetchAllCars, fetchCarById } from "./operations";
 
 const initialState = {
   cars: { entities: [], pagination: {} },
@@ -23,6 +23,18 @@ export const carsSlice = createSlice({
         state.cars.pagination = action.payload.pagination;
       })
       .addCase(fetchAllCars.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(fetchCarById.pending, (state, action) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(fetchCarById.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.car = action.payload.data;
+      })
+      .addCase(fetchCarById.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
