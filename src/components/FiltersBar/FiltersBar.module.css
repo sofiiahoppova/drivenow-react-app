@@ -145,3 +145,9 @@
     flex-wrap: wrap;
   }
 }
+
+@media only screen and (max-width: 440px) {
+  .container {
+    padding: 0 32px;
+  }
+}
