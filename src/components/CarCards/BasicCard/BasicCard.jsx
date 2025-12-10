@@ -5,14 +5,14 @@ import PriceTable from "../components/PriceTable/PriceTable";
 import Plans from "../components/Plans/Plans";
 import CarFeaturesList from "../shared/CarFeaturesList/CarFeaturesList";
 
-import { selectDates } from "../../../redux/dates/datesSlice";
+import { selectDates } from "../../../redux/filters/selectors";
 import { setOpen } from "../../../redux/modal/modalSlice";
 
 import css from "./BasicCard.module.css";
 
 const BasicCard = ({ car }) => {
   const dispatch = useDispatch();
-  const selectedDates = useSelector(selectDates);
+  const dates = useSelector(selectDates);
 
   return (
     <div className={css.container}>
@@ -50,8 +50,8 @@ const BasicCard = ({ car }) => {
         alt={`${car.brand} ${car.model} photo`}
       />
       <CarFeaturesList car={car} />
-      {selectedDates.length > 0 ? (
-        <Plans />
+      {dates.startDate && dates.endDate ? (
+        <Plans car={car} />
       ) : (
         <PriceTable prices={car.prices} carId={car.id} />
       )}
