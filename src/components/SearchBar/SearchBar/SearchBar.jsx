@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 import DatesInputs from "../DatesInputs/DatesInputs";
 
-import { datesAdded } from "../../../redux/dates/datesSlice";
+import { setDates } from "../../../redux/filters/filtersSlice";
 
 import css from "./SearchBar.module.css";
 
@@ -24,7 +24,7 @@ const SearchBar = () => {
     } else if (pickupDate < today.toISOString().split("T")[0]) {
       toast.error("Pick up date shouldn't be earliar than today");
     } else {
-      dispatch(datesAdded([pickupDate, dropoffDate]));
+      dispatch(setDates([pickupDate, dropoffDate]));
 
       toast.success("Dates selected successfully!");
 

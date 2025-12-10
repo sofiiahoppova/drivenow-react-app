@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { selectDates } from "../../../redux/dates/datesSlice";
+import { selectDates } from "../../../redux/filters/selectors";
 
 import css from "./DatesInputs.module.css";
 
 const DatesInputs = () => {
-  const dates = useSelector(selectDates);
+  const { startDate, endDate } = useSelector(selectDates);
 
   return (
     <div className={css.wrapper}>
@@ -17,7 +17,7 @@ const DatesInputs = () => {
           type="date"
           name="pickup"
           id="pickup-date"
-          defaultValue={dates[0]}
+          defaultValue={startDate}
         />
       </div>
       <div className={css.inputWrapper}>
@@ -27,7 +27,7 @@ const DatesInputs = () => {
           type="date"
           name="dropoff"
           id="dropoff-date"
-          defaultValue={dates[1]}
+          defaultValue={endDate}
         />
       </div>
     </div>
