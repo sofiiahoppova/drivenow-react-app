@@ -1,4 +1,4 @@
-import css from "./BrandsSection.module.css";
+import css from "../BrandsSection.module.css";
 
 export const CustomSlide = (props) => {
   const { brand, ...otherProps } = props;

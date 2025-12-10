@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
-import { SampleNextArrow, SamplePrevArrow } from "./SliderArrows";
-import { CustomSlide } from "./CustomSlide";
+import { SampleNextArrow, SamplePrevArrow } from "./components/SliderArrows";
+import { CustomSlide } from "./components/CustomSlide";
 
 import { useDispatch } from "react-redux";
 import { setFilter } from "../../redux/filters/filtersSlice";
