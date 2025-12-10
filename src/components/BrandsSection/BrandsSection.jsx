@@ -5,6 +5,9 @@ import Slider from "react-slick";
 import { SampleNextArrow, SamplePrevArrow } from "./SliderArrows";
 import { CustomSlide } from "./CustomSlide";
 
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../redux/filters/filtersSlice";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -24,6 +27,8 @@ const brands = [
 ];
 
 const BrandsSection = ({ setActiveSlide }) => {
+  const dispatch = useDispatch();
+
   const settings = {
     className: "center",
     centerMode: true,
@@ -54,7 +59,8 @@ const BrandsSection = ({ setActiveSlide }) => {
     ],
     beforeChange: (current, next) => {
       const brand = brands[next].name;
-      setActiveSlide(brand.toLowerCase());
+      setActiveSlide(brand);
+      dispatch(setFilter({ brand: brand }));
     },
   };
 
