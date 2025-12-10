@@ -3,15 +3,14 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-import { selectDates } from "/src/redux/dates/datesSlice";
+import { selectDates } from "../../../../redux/filters/selectors";
 import { calculateDays } from "/src/utils/calculateDays";
 
 import css from "./Plans.module.css";
-import car from "/src/components/CarCards/ExampleCarData.json";
 
-const Plans = () => {
-  const [pickup, dropoff] = useSelector(selectDates);
-  const days = calculateDays(pickup, dropoff);
+const Plans = ({ car }) => {
+  const dates = useSelector(selectDates);
+  const days = calculateDays(dates.startDate, dates.endDate);
 
   let period = "";
   let basicPrice = 0;
