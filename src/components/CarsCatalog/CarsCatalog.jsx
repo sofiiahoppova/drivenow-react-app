@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
@@ -7,7 +7,11 @@ import BasicCard from "../CarCards/BasicCard/BasicCard";
 import Pagination from "./Pagination/Pagination";
 
 import { fetchAllCars } from "../../redux/cars/operations";
-import { selectDates } from "../../redux/dates/datesSlice";
+import {
+  selectDates,
+  selectFilters,
+  selectPage,
+} from "../../redux/filters/selectors";
 import {
   selectAllCars,
   selectCarsError,
@@ -19,43 +23,48 @@ import css from "./CarsCatalog.module.css";
 
 const CarsCatalog = () => {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
 
-  const [pickup, dropoff] = useSelector(selectDates);
+  const { startDate, endDate } = useSelector(selectDates);
+  const filters = useSelector(selectFilters);
+  const page = useSelector(selectPage);
   const cars = useSelector(selectAllCars);
   const pagination = useSelector(selectPagination);
   const carsStatus = useSelector(selectCarsStatus);
   const error = useSelector(selectCarsError);
 
   useEffect(() => {
-    console.log(currentPage);
     dispatch(
       fetchAllCars({
-        page: currentPage,
-        perPage: 2,
-        startDate: pickup,
-        endDate: dropoff,
+        page,
+        perPage: 8,
+        startDate,
+        endDate,
+        ...filters,
       })
     );
-  }, [dispatch, currentPage]);
+    console.log(filters);
+  }, [dispatch, page, filters, startDate, endDate]);
 
   useEffect(() => {
     window.scrollTo({
       top: 300,
       behavior: "smooth",
     });
-  }, [currentPage]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [pickup, dropoff]);
+  }, [page]);
 
   let content;
 
   if (carsStatus == "loading") {
     content = <Loader />;
   } else if (carsStatus == "succeeded") {
-    content = cars.map((car, index) => <BasicCard key={index} car={car} />);
+    content =
+      pagination.totalItems >= 1 ? (
+        cars.map((car, index) => <BasicCard key={index} car={car} />)
+      ) : (
+        <p>
+          There is no cars found for this filter results. Try other categories!
+        </p>
+      );
   } else if (carsStatus == "failed") {
     toast.error(error);
   }
@@ -63,11 +72,9 @@ const CarsCatalog = () => {
   return (
     <section className={css.container}>
       <div className={css.list}>{content}</div>
-      <Pagination
-        pages={pagination.totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {pagination.totalPages > 1 && (
+        <Pagination pages={pagination.totalPages} />
+      )}
     </section>
   );
 };
