@@ -27,7 +27,8 @@
   border-radius: 14px;
 }
 
-.btn {
+.btn,
+.dots {
   color: var(--navi-blue);
   font-size: 15px;
 }

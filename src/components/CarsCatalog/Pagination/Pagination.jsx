@@ -1,42 +1,68 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
+
+import { setPage } from "../../../redux/filters/filtersSlice";
+import { selectPage } from "../../../redux/filters/selectors";
 
 import css from "./Pagination.module.css";
 
-const Pagination = ({ pages, currentPage, setCurrentPage }) => {
-  const pagesCount = Array.from({ length: pages }, (_, i) => i + 1);
+const Pagination = ({ pages }) => {
+  const dispatch = useDispatch();
+  const page = useSelector(selectPage);
+
+  const goTo = (page) => dispatch(setPage(page));
+
+  const renderPage = (currentPage) => (
+    <li
+      key={currentPage}
+      className={clsx(currentPage == page && css.current, css.btnWrapper)}
+      onClick={() => goTo(currentPage)}
+    >
+      <button className={clsx(currentPage == page && css.currentBtn, css.btn)}>
+        {currentPage}
+      </button>
+    </li>
+  );
+
+  const dots = (key) => (
+    <span key={key} className={css.dots}>
+      …
+    </span>
+  );
+
+  const pagesToShow = [];
+
+  pagesToShow.push(renderPage(1));
+  if (page > 3) pagesToShow.push(dots("left"));
+
+  for (let p = page - 1; p <= page + 1; p++) {
+    if (p > 1 && p < pages) {
+      pagesToShow.push(renderPage(p));
+    }
+  }
+
+  if (page < pages - 2) pagesToShow.push(dots("right"));
+
+  if (pages > 1) pagesToShow.push(renderPage(pages));
 
   return (
     <div className={css.container}>
       <button
-        onClick={() => setCurrentPage(currentPage - 1)}
+        onClick={() => goTo(page - 1)}
         className={css.chevron}
-        disabled={currentPage <= 1}
+        disabled={page <= 1}
         aria-label="Previous page"
       >
         <svg className={css.icon} width={10} height={16}>
           <use href="/sprite.svg#icon-chevron-left"></use>
         </svg>
       </button>
-      <ul className={css.wrapper}>
-        {pagesCount.map((page) => (
-          <li
-            key={page}
-            className={clsx(page == currentPage && css.current, css.btnWrapper)}
-            onClick={() => setCurrentPage(page)}
-          >
-            <button
-              className={clsx(page == currentPage && css.currentBtn, css.btn)}
-            >
-              {page}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <ul className={css.wrapper}>{pagesToShow}</ul>
       <button
-        onClick={() => setCurrentPage(currentPage + 1)}
+        onClick={() => goTo(page + 1)}
         className={css.chevron}
-        disabled={currentPage >= pages}
+        disabled={page >= pages}
         aria-label="Next page"
       >
         <svg className={css.icon} width={10} height={16}>
