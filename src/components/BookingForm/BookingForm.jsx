@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { Field } from "formik";
+import { ErrorMessage, Field } from "formik";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
@@ -45,7 +45,7 @@ const BookingForm = () => {
               type="radio"
               name="plan"
               value="Full coverage"
-              checked={plan == "full" ? true : false}
+              checked={plan == "full"}
               onChange={() => setSearchParams({ plan: "full" })}
             />
             <svg className={css.greenIcon} width={24} height={24}>
@@ -83,6 +83,11 @@ const BookingForm = () => {
           </label>
           <p className={css.text}>no discount</p>
         </div>
+        <ErrorMessage
+          name="paymentMethod"
+          component="span"
+          className={css.error}
+        />
       </section>
       <section className={css.sectionWrapper}>
         <h3 className={css.title}>Your Contact Details & Quick Verification</h3>
