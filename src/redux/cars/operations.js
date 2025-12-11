@@ -12,7 +12,6 @@ export const fetchAllCars = createAsyncThunk(
   async (filters, thunkAPI) => {
     try {
       const { data } = await instance.get("/cars", { params: { ...filters } });
-      console.log(data);
       return data;
     } catch (error) {
       if (error.response) {
@@ -28,7 +27,6 @@ export const fetchCarById = createAsyncThunk(
   async (carId, thunkAPI) => {
     try {
       const { data } = await instance.get(`/cars/${carId}`);
-      console.log("fetch car by id: ", data.data);
       return data;
     } catch (error) {
       if (error.response) {

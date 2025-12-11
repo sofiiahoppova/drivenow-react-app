@@ -3,7 +3,7 @@ import { fetchAllCars, fetchCarById } from "./operations";
 
 const initialState = {
   cars: { entities: [], pagination: {} },
-  car: {},
+  car: null,
   status: "idle",
   error: null,
 };
