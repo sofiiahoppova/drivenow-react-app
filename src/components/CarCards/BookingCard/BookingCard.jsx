@@ -1,24 +1,60 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import clsx from "clsx";
 
-import { selectDates } from "../../../redux/dates/datesSlice";
+import Loader from "../../Loader/Loader";
+
+import { selectDates } from "../../../redux/filters/selectors";
 import { calculateDays } from "/src/utils/calculateDays";
 import { calculatePrice } from "../../../utils/calculatePrice";
+import { fetchCarById } from "../../../redux/cars/operations";
+import {
+  selectCar,
+  selectCarsError,
+  selectCarsStatus,
+} from "../../../redux/cars/selectors";
 
 import css from "./BookingCard.module.css";
 
-import car from "../ExampleCarData.json";
-
 const BookingCard = () => {
-  const carId = useParams(); //to get the car by id
+  const { id } = useParams();
   const [searchParams] = useSearchParams();
   const plan = searchParams.get("plan");
 
-  const [pickup, dropoff] = useSelector(selectDates);
-  const days = calculateDays(pickup, dropoff);
-  const price = calculatePrice(car, days, plan);
+  const dates = useSelector(selectDates);
+  const startDate = dates.startDate ?? localStorage.getItem("startDate");
+  const endDate = dates.endDate ?? localStorage.getItem("endDate");
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCarById(id));
+  }, [dispatch, id]);
+
+  const car = useSelector(selectCar);
+
+  const days = calculateDays(startDate, endDate);
+
+  const price = useMemo(() => {
+    if (!car) return null;
+    if (days <= 0) return null;
+
+    return calculatePrice(car, days, plan);
+  }, [car, days, plan]);
+
+  const carsStatus = useSelector(selectCarsStatus);
+  const error = useSelector(selectCarsError);
+
+  useEffect(() => {
+    if (carsStatus === "failed") {
+      toast.error(error);
+    }
+  }, [carsStatus, error]);
+
+  if (carsStatus === "loading") return <Loader />;
+  if (!car) return <p>Car not found</p>;
+  if (!price) return <Loader />;
 
   return (
     <div className={css.container}>
@@ -32,7 +68,7 @@ const BookingCard = () => {
           </div>
         </div>
         <img
-          src={car.imageUrl}
+          src="/images/CarExample.png"
           alt={`${car.brand} ${car.model} photo`}
           className={css.image}
         />
@@ -71,20 +107,20 @@ const BookingCard = () => {
         <p className={css.total}>Total</p>
         <span className={css.total}>{price.total} $</span>
       </div>
-      <button className={css.bookBtn} type="submit">
+      <button
+        className={css.bookBtn}
+        onClick={() => {
+          console.log("Cliked");
+        }}
+        type="submit"
+      >
         Confirm booking
       </button>
       <div className={css.inputWrapper}>
-        <input
-          type="checkbox"
-          name="agreement"
-          id="agreement"
-          className={css.checkBox}
-        />
-        <label htmlFor="agreement" className={css.label}>
+        <p className={css.text}>
           By confirming your booking, you agree to our Terms of Use, Rental
           Agreement, and Privacy Policy.
-        </label>
+        </p>
       </div>
     </div>
   );

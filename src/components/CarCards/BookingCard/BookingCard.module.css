@@ -70,12 +70,14 @@
 .text {
   font-weight: 400;
   font-size: 15px;
+  text-align: left;
 }
 
 .bold {
   font-weight: 500;
   font-size: 15px;
 }
+
 .accentGreen {
   color: var(--accent-green);
 }
