@@ -25,6 +25,8 @@ const SearchBar = () => {
       toast.error("Pick up date shouldn't be earliar than today");
     } else {
       dispatch(setDates([pickupDate, dropoffDate]));
+      localStorage.setItem("startDate", pickupDate);
+      localStorage.setItem("endDate", dropoffDate);
 
       toast.success("Dates selected successfully!");
 
