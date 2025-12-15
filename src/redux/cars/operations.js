@@ -1,17 +1,11 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-const BASE_URL = "https://drivenow-node-backend.onrender.com";
-
-const instance = axios.create({
-  baseURL: BASE_URL,
-});
+import axios from "axios";
 
 export const fetchAllCars = createAsyncThunk(
   "cars/fetchAllCars",
   async (filters, thunkAPI) => {
     try {
-      const { data } = await instance.get("/cars", { params: { ...filters } });
+      const { data } = await axios.get("/cars", { params: { ...filters } });
       return data;
     } catch (error) {
       if (error.response) {
@@ -26,7 +20,7 @@ export const fetchCarById = createAsyncThunk(
   "cars/fetchCarById",
   async (carId, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/cars/${carId}`);
+      const { data } = await axios.get(`/cars/${carId}`);
       return data;
     } catch (error) {
       if (error.response) {
