@@ -21,6 +21,11 @@ const FiltersBar = ({ filter }) => {
     );
   };
 
+  const handleReset = () => {
+    dispatch(resetFilters());
+    reset();
+  };
+
   return (
     <div className={css.container}>
       <form onSubmit={handleSubmit} className={css.filtersForm}>
@@ -73,7 +78,7 @@ const FiltersBar = ({ filter }) => {
         <div className={css.buttonsWrapper}>
           <button
             type="reset"
-            onClick={() => dispatch(resetFilters())}
+            onClick={handleReset}
             className={clsx(css.btn, css.resetBtn)}
           >
             ResetAll
