@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import css from "./HeroSection.module.css";
-import { NavLink } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -15,14 +16,14 @@ const HeroSection = () => {
 
       <ul className={css.list}>
         <li className={css.item}>
-          <a href="" className={css.link}>
+          <Link className={css.link} to="/signup">
             Register
-          </a>
+          </Link>
         </li>
         <li className={css.item}>
-          <NavLink className={css.link} to="/autopark">
+          <Link className={css.link} to="/autopark">
             Book a car
-          </NavLink>
+          </Link>
         </li>
       </ul>
     </section>
