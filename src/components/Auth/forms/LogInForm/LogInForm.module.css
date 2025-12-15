@@ -89,3 +89,9 @@
 .link:hover {
   color: var(--navi-blue-hover);
 }
+
+@media only screen and (max-width: 1028px) {
+  .container {
+    padding: 64px 100px;
+  }
+}

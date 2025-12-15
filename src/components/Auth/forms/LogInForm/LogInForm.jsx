@@ -1,18 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
 
 import InputField from "../../shared/InputField/InputField";
 import Divider from "../../shared/Divider/Divider";
 import GoogleAuth from "../../shared/GoogleAuth/GoogleAuth";
 
+import {
+  selectAuthError,
+  selectAuthStatus,
+} from "../../../../redux/auth/selectors";
+import { logIn } from "../../../../redux/auth/operations";
+
 import css from "./LogInForm.module.css";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
-    .length(8, "Password should be 8 simbols length")
+    .min(8, "Password should have more than 7 simbols length")
     .required("Required"),
 });
 
@@ -22,8 +30,21 @@ const initialValues = {
 };
 
 const LogInForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const status = useSelector(selectAuthStatus);
+  const error = useSelector(selectAuthError);
+
+  useEffect(() => {
+    if (status === "succeeded") {
+      navigate("/autopark");
+    } else if (status === "failed") {
+      toast.error(error);
+    }
+  }, [status, error]);
+
   const handleSubmit = (values) => {
-    console.log(values);
+    dispatch(logIn(values));
   };
 
   return (
