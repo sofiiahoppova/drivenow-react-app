@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage";
@@ -13,10 +13,14 @@ import UserAccount from "./components/UserAccount/UserAccount";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer/Footer";
 import Modal from "./components/Modal/Modal";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
+import { selectIsAuthenticated, selectToken } from "./redux/auth/selectors";
+import { fetchUserMe } from "./redux/user/operations";
 import { modalComponents } from "./constants/modalComponents";
 
 import "./App.css";
+import { setAuthHeader } from "./redux/auth/operations";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -29,6 +33,17 @@ const Wrapper = ({ children }) => {
 };
 
 const App = () => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    if (isAuthenticated && token) {
+      setAuthHeader(token);
+      dispatch(fetchUserMe());
+    }
+  }, [isAuthenticated, token, dispatch]);
+
   const location = useLocation();
   const hideLayoutPaths = ["/login", "/signup"];
 
@@ -63,11 +78,13 @@ const App = () => {
               path="/autopark"
               element={<AutoParkPage activeSlide={activeSlide} />}
             />
-            <Route path="/booking/:id" element={<BookingPage />} />
             <Route path="/policies" element={<PoliciesPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LogInPage />} />
-            <Route path="/account" element={<UserAccount />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/booking/:id" element={<BookingPage />} />
+              <Route path="/account" element={<UserAccount />} />
+            </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Wrapper>
