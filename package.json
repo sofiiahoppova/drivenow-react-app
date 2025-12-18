@@ -25,7 +25,6 @@
     "react-router-hash-link": "^2.4.3",
     "react-slick": "^0.31.0",
     "redux": "^5.0.1",
-    "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
     "yup": "^1.7.1"
   },
