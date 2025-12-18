@@ -109,9 +109,6 @@ const BookingCard = () => {
       </div>
       <button
         className={css.bookBtn}
-        onClick={() => {
-          console.log("Cliked");
-        }}
         type="submit"
       >
         Confirm booking

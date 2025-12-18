@@ -42,7 +42,6 @@ const CarsCatalog = () => {
         ...filters,
       })
     );
-    console.log(filters);
   }, [dispatch, page, filters, startDate, endDate]);
 
   useEffect(() => {
