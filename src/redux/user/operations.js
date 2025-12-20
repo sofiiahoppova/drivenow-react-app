@@ -1,11 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+
+import { api } from "../../api/axiosInstance";
 
 export const fetchUserMe = createAsyncThunk(
   "user/fetchUserMe",
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get("/users/me");
+      const { data } = await api.get("/users/me");
       return data;
     } catch (error) {
       if (error.response) {
@@ -20,7 +21,7 @@ export const updateUserMe = createAsyncThunk(
   "user/updateUserMe",
   async (credantials, thunkAPI) => {
     try {
-      const { data } = await axios.put("/users/me", credantials);
+      const { data } = await api.put("/users/me", credantials);
       return data;
     } catch (error) {
       if (error.response) {
