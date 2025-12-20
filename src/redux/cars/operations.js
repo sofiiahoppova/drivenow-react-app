@@ -1,11 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+
+import { api } from "../../api/axiosInstance";
 
 export const fetchAllCars = createAsyncThunk(
   "cars/fetchAllCars",
   async (filters, thunkAPI) => {
     try {
-      const { data } = await axios.get("/cars", { params: { ...filters } });
+      const { data } = await api.get("/cars", { params: { ...filters } });
       return data;
     } catch (error) {
       if (error.response) {
@@ -20,7 +21,7 @@ export const fetchCarById = createAsyncThunk(
   "cars/fetchCarById",
   async (carId, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/cars/${carId}`);
+      const { data } = await api.get(`/cars/${carId}`);
       return data;
     } catch (error) {
       if (error.response) {
