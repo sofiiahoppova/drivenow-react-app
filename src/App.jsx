@@ -9,18 +9,19 @@ import BookingPage from "./pages/BookingPage";
 import PoliciesPage from "./pages/PoliciesPage";
 import SignUpPage from "./pages/SignUpPage";
 import LogInPage from "./pages/LogInPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import UserAccount from "./components/UserAccount/UserAccount";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer/Footer";
 import Modal from "./components/Modal/Modal";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
-import { selectIsAuthenticated, selectToken } from "./redux/auth/selectors";
+import { setToken } from "./redux/auth/authSlice";
+import { setInit } from "./redux/user/usersSlice";
 import { fetchUserMe } from "./redux/user/operations";
 import { modalComponents } from "./constants/modalComponents";
 
 import "./App.css";
-import { setAuthHeader } from "./redux/auth/operations";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -34,18 +35,17 @@ const Wrapper = ({ children }) => {
 
 const App = () => {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(selectIsAuthenticated);
-  const token = useSelector(selectToken);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    if (isAuthenticated && token) {
-      setAuthHeader(token);
+    if (token) {
+      dispatch(setToken(token));
       dispatch(fetchUserMe());
-    }
-  }, [isAuthenticated, token, dispatch]);
+    } else dispatch(setInit(true));
+  }, [token, dispatch]);
 
   const location = useLocation();
-  const hideLayoutPaths = ["/login", "/signup"];
+  const hideLayoutPaths = ["/login", "/signup", "/reset-password"];
 
   const shouldHideLayout = hideLayoutPaths.includes(location.pathname);
   const shouldHideFooter = location.pathname == "/account";
