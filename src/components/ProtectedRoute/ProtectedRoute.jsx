@@ -1,23 +1,29 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 import { setOpen } from "../../redux/modal/modalSlice";
-import { selectMe } from "../../redux/user/selectors";
+import {
+  selectIsAuthenticated,
+  selectIsInitialized,
+} from "../../redux/user/selectors";
+import Loader from "../Loader/Loader";
 
 const ProtectedRoute = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectMe);
+  const isInitialized = useSelector(selectIsInitialized);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
-  useEffect(() => {
-    if (!user) {
-      dispatch(setOpen({ component: "AuthModal" }));
-    }
-  }, [dispatch, user]);
-
-  if (user) {
-    return <Outlet />;
+  if (!isInitialized) {
+    return <Loader />;
   }
+
+  if (!isAuthenticated) {
+    dispatch(setOpen({ component: "AuthModal" }));
+    return <Navigate to="/" />;
+  }
+
+  return <Outlet />;
 };
 
 export default ProtectedRoute;
