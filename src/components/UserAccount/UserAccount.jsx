@@ -1,98 +1,64 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Formik } from "formik";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
 
 import InputField from "../Auth/shared/InputField/InputField";
 
-import css from "./UserAcccount.module.css";
+import { selectMe } from "../../redux/user/selectors";
+import { updateUserMe } from "../../redux/user/operations";
+import { selectBookings } from "../../redux/bookings/selectors.js";
+import { fetchAllBookings } from "../../redux/bookings/operations";
+import { setOpen } from "../../redux/modal/modalSlice";
 
-const user = {
-  id: 10,
-  fullName: "Alexa Sloany",
-  email: "alexa1@example.com",
-  password: "$2b$10$1OE1zkqphwOzQDyr4uA3qublQ8o2WT/311ZFxspoAqhdF8ztgjqxi",
-  phoneNumber: null,
-  dateOfBirth: null,
-  passportUrl: null,
-  driverLicenseUrl: null,
-  createdAt: "2025-11-12T15:50:31.965Z",
-  updatedAt: "2025-11-12T15:50:59.352Z",
-  bookings: [
-    {
-      id: 1,
-      plan: "fullCoverage",
-      status: "pending",
-      startDate: "2025-11-25T00:00:00.000Z",
-      endDate: "2025-11-30T00:00:00.000Z",
-      createdAt: "2025-11-20T08:40:35.169Z",
-      updatedAt: "2025-11-20T08:48:57.165Z",
-      carId: 18,
-      userId: 1,
-      car: {
-        carClass: "SUV",
-        model: "Qashqai",
-        brand: "Nissan",
-      },
-    },
-    {
-      id: 2,
-      plan: "fullCoverage",
-      status: "pending",
-      startDate: "2025-11-25T00:00:00.000Z",
-      endDate: "2025-11-30T00:00:00.000Z",
-      createdAt: "2025-11-20T08:40:35.169Z",
-      updatedAt: "2025-11-20T08:48:57.165Z",
-      carId: 18,
-      userId: 1,
-      car: {
-        carClass: "SUV",
-        model: "Qashqai",
-        brand: "Nissan",
-      },
-    },
-    {
-      id: 3,
-      plan: "fullCoverage",
-      status: "pending",
-      startDate: "2025-11-25T00:00:00.000Z",
-      endDate: "2025-11-30T00:00:00.000Z",
-      createdAt: "2025-11-20T08:40:35.169Z",
-      updatedAt: "2025-11-20T08:48:57.165Z",
-      carId: 18,
-      userId: 1,
-      car: {
-        carClass: "SUV",
-        model: "Qashqai",
-        brand: "Nissan",
-      },
-    },
-  ],
-};
+import css from "./UserAcccount.module.css";
 
 const BookingSchema = Yup.object().shape({
   fullName: Yup.string().min(3).required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
-  phoneNumber: Yup.string()
-    .matches(/^\+?\d{10,15}$/, "Enter a valid phone number")
-    .required("Required"),
-  dateOfBirth: Yup.string()
-    .matches(
-      /^\d{4}\.\d{2}\.\d{2}$/,
-      "Date of birth must be in format YYYY.MM.DD"
-    )
-    .required("Required"),
+  phoneNumber: Yup.string().matches(
+    /^\+?\d{10,15}$/,
+    "Enter a valid phone number"
+  ),
+  dateOfBirth: Yup.string().matches(
+    /^\d{4}\-\d{2}\-\d{2}$/,
+    "Date of birth must be in format YYYY-MM-DD"
+  ),
 });
 
-const initialValues = {
-  fullName: "",
-  email: "",
-  phoneNumber: "",
-  dateOfBirth: "",
-};
-
 const UserAccount = () => {
-  const handleSubmit = (values) => {
-    console.log(values);
+  const dispatch = useDispatch();
+  const user = useSelector(selectMe);
+  const bookings = useSelector(selectBookings);
+
+  useEffect(() => {
+    dispatch(fetchAllBookings());
+  }, [dispatch]);
+
+  const handleSubmit = async (values) => {
+    let data;
+
+    for (const [key, value] of Object.entries(values)) {
+      if (value) {
+        data = { ...data, [key]: value };
+      }
+    }
+    console.log(data);
+
+    try {
+      await dispatch(updateUserMe(data)).unwrap();
+      toast.success("You have updated data successfully!");
+    } catch (e) {
+      toast.error(e);
+    }
+  };
+
+  const initialValues = {
+    fullName: user?.fullName || "",
+    email: user?.email || "",
+    phoneNumber: user?.phoneNumber || "",
+    dateOfBirth: user?.dateOfBirth ? user.dateOfBirth.split("T")[0] : "",
   };
 
   return (
@@ -167,8 +133,8 @@ const UserAccount = () => {
               place
             </p>
           </div>
-          {user.bookings.length >= 1 ? (
-            user.bookings.map((booking) => {
+          {bookings && bookings?.length >= 1 ? (
+            bookings.map((booking) => {
               return (
                 <div key={booking.id} className={css.bookingWrapper}>
                   <div className={css.bookingBlock}>
