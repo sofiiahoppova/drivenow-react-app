@@ -23,7 +23,6 @@ const FiltersBar = ({ filter }) => {
 
   const handleReset = () => {
     dispatch(resetFilters());
-    reset();
   };
 
   return (
