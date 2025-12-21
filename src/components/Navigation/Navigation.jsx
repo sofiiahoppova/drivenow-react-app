@@ -3,9 +3,13 @@ import { NavLink, Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import clsx from "clsx";
 
+import { useSelector } from "react-redux";
+import { selectMe } from "../../redux/user/selectors";
+
 import css from "./Navigation.module.css";
 
 const Navigation = ({ color, onClose, isMobile }) => {
+  const user = useSelector(selectMe);
   const buildLinkClass = ({ isActive }) => {
     return clsx(
       css.link,
@@ -49,21 +53,30 @@ const Navigation = ({ color, onClose, isMobile }) => {
               AutoPark
             </NavLink>
           </li>
+          {user && (
+            <li className={css.item}>
+              <NavLink to="/account" className={buildLinkClass}>
+                Account: {user.fullName}
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
-      <ul className={css.auth}>
-        <li>
-          <Link to="/login" className={css.link}>
-            Login
-          </Link>
-        </li>
-        <li>|</li>
-        <li>
-          <Link to="/signup" className={css.link}>
-            Register
-          </Link>
-        </li>
-      </ul>
+      {!user && (
+        <ul className={css.auth}>
+          <li>
+            <Link to="/login" className={css.link}>
+              Login
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to="/signup" className={css.link}>
+              Register
+            </Link>
+          </li>
+        </ul>
+      )}
     </div>
   );
 };
