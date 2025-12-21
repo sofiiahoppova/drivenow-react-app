@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import toast from "react-hot-toast";
@@ -9,10 +9,6 @@ import InputField from "../../shared/InputField/InputField";
 import Divider from "../../shared/Divider/Divider";
 import GoogleAuth from "../../shared/GoogleAuth/GoogleAuth";
 
-import {
-  selectAuthError,
-  selectAuthStatus,
-} from "../../../../redux/auth/selectors";
 import { signUp } from "../../../../redux/auth/operations";
 
 import css from "./SignUpForm.module.css";
@@ -37,19 +33,15 @@ const initialValues = {
 const SignUpForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const status = useSelector(selectAuthStatus);
-  const error = useSelector(selectAuthError);
 
-  useEffect(() => {
-    if (status === "succeeded") {
+  const handleSubmit = async (values) => {
+    try {
+      await dispatch(signUp(values)).unwrap();
       navigate("/autopark");
-    } else if (status === "failed") {
-      toast.error(error);
+      toast.success("You have Registered successfully!");
+    } catch (e) {
+      toast.error(e);
     }
-  }, [status, error]);
-
-  const handleSubmit = (values) => {
-    dispatch(signUp(values));
   };
 
   return (
