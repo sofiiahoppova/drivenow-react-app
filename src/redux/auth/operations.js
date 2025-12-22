@@ -1,38 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
-axios.defaults.baseURL = "https://drivenow-node-backend.onrender.com";
-// axios.defaults.baseURL = "http://localhost:3000";
-
-// axios.defaults.withCredentials = true;
-
-axios.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error(
-      "API error:",
-      error.response?.status,
-      error.response?.data?.message || error.message
-    );
-    return Promise.reject(error);
-  }
-);
-
-export const setAuthHeader = (token) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
-};
+import { api } from "../../api/axiosInstance";
+import { clearAuthHeader, setAuthHeader } from "../../api/utils";
 
 export const signUp = createAsyncThunk(
   "auth/signUp",
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post("/register", credentials);
-      console.log(data, data.data.accessToken);
+      const { data } = await api.post("/register", credentials);
       setAuthHeader(data.data.accessToken);
+      localStorage.setItem("accessToken", data.data.accessToken);
       return data;
     } catch (error) {
       if (error.response) {
@@ -47,10 +24,9 @@ export const logIn = createAsyncThunk(
   "auth/logIn",
   async (credentials, thunkAPI) => {
     try {
-      console.log(credentials);
-      const data = await axios.post("/login", credentials);
-      console.log(data);
+      const data = await api.post("/login", credentials);
       setAuthHeader(data.data.accessToken);
+      localStorage.setItem("accessToken", data.data.accessToken);
       return data.data.accessToken;
     } catch (error) {
       if (error.response) {
@@ -63,8 +39,9 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk("auth/logOut", async (_, thunkAPI) => {
   try {
-    await axios.delete("/logout");
+    await api.delete("/logout");
     clearAuthHeader();
+    localStorage.clear("accessToken");
   } catch (error) {
     if (error.response) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -72,3 +49,33 @@ export const logOut = createAsyncThunk("auth/logOut", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message || "Unknown error");
   }
 });
+
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async (email, thunkAPI) => {
+    try {
+      const { data } = await api.post("/forgot-password", { email });
+      return data;
+    } catch (error) {
+      if (error.response) {
+        return thunkAPI.rejectWithValue(error.response.data);
+      }
+      return thunkAPI.rejectWithValue(error.message || "Unknown error");
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await api.post("/reset-password", credentials);
+      return data;
+    } catch (error) {
+      if (error.response) {
+        return thunkAPI.rejectWithValue(error.response.data);
+      }
+      return thunkAPI.rejectWithValue(error.message || "Unknown error");
+    }
+  }
+);
