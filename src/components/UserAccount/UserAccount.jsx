@@ -71,17 +71,26 @@ const UserAccount = () => {
             className={css.avatar}
           />
           <div className={css.infoWrapper}>
-            <div className={css.infoWrapper}>
-              <span className={css.infoTitle}>Your Name</span>
-              <p className={css.infoText}>{user.fullName}</p>
-            </div>
-            <div className={css.infoWrapper}>
-              <span className={css.infoTitle}>Your Email</span>
-              <p className={css.infoText}>{user.email}</p>
-            </div>
+            <span className={css.infoTitle}>Your Name</span>
+            <p className={css.infoText}>{user.fullName}</p>
+          </div>
+          <div className={css.infoWrapper}>
+            <span className={css.infoTitle}>Your Email</span>
+            <p className={css.infoText}>{user.email}</p>
           </div>
         </div>
-        <button className={css.logoutBtn}>Log Out</button>
+        <button
+          onClick={() =>
+            dispatch(
+              setOpen({
+                component: "LogOutModal",
+              })
+            )
+          }
+          className={css.logoutBtn}
+        >
+          Log Out
+        </button>
       </aside>
       <div className={css.mainWrarpper}>
         <Formik
@@ -154,8 +163,22 @@ const UserAccount = () => {
                     </p>
                   </div>
                   <div className={css.bookingBlock}>
-                    <button className={css.bookingBasicBtn}>Update</button>
-                    <button className={css.transBtn}>Cancel</button>
+                    <button className={css.bookingBasicBtn} disabled>
+                      Update
+                    </button>
+                    <button
+                      className={css.transBtn}
+                      onClick={() =>
+                        dispatch(
+                          setOpen({
+                            component: "DeleteBookingModal",
+                            props: { id: booking.id },
+                          })
+                        )
+                      }
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </div>
               );
