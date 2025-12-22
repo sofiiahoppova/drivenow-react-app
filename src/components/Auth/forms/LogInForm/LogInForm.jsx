@@ -47,42 +47,56 @@ const LogInForm = () => {
         validationSchema={SignupSchema}
         onSubmit={handleSubmit}
       >
-        <Form className={css.form}>
-          <div className={css.inputsWrapper}>
-            <InputField
-              label="Email address"
-              id="email"
-              placeholder="jane@example.com"
-            />
-            <div className={css.passwordWrapper}>
+        {(values) => (
+          <Form className={css.form}>
+            <div className={css.inputsWrapper}>
               <InputField
-                label="Password"
-                id="password"
-                placeholder="********"
+                label="Email address"
+                id="email"
+                placeholder="jane@example.com"
               />
-              <a href="" className={css.passwordLink}>
-                Foggot password?
-              </a>
+              <div className={css.passwordWrapper}>
+                <InputField
+                  label="Password"
+                  id="password"
+                  placeholder="********"
+                />
+                <button
+                  onClick={async () => {
+                    try {
+                      await dispatch(
+                        forgotPassword(values.values.email)
+                      ).unwrap();
+                      toast.success("Check your email to reset password");
+                    } catch (error) {
+                      toast.error(error);
+                    }
+                  }}
+                  className={css.passwordLink}
+                >
+                  Foggot password?
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div className={css.buttonsWrapper}>
-            <div className={css.btnWrapper}>
-              <button type="submit" className={css.submitBtn}>
-                Log in
-              </button>
-              <p className={css.linkText}>
-                Don't have an account?{" "}
-                <Link to="/signup" className={css.link}>
-                  Sign up
-                </Link>
-              </p>
+            <div className={css.buttonsWrapper}>
+              <div className={css.btnWrapper}>
+                <button type="submit" className={css.submitBtn}>
+                  Log in
+                </button>
+                <p className={css.linkText}>
+                  Don't have an account?{" "}
+                  <Link to="/signup" className={css.link}>
+                    Sign up
+                  </Link>
+                </p>
+              </div>
+
+              <Divider />
+              <GoogleAuth name="Log in" />
             </div>
-
-            <Divider />
-            <GoogleAuth name="Log in" />
-          </div>
-        </Form>
+          </Form>
+        )}
       </Formik>
     </div>
   );
