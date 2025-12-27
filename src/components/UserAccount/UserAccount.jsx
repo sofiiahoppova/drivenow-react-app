@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 
 import InputField from "../Auth/shared/InputField/InputField";
+import BookingsList from "../BookingsList/BookingsList.jsx";
 
 import { selectMe } from "../../redux/user/selectors";
 import { updateUserMe } from "../../redux/user/operations";
-import { selectBookings } from "../../redux/bookings/selectors.js";
-import { fetchAllBookings } from "../../redux/bookings/operations";
 import { setOpen } from "../../redux/modal/modalSlice";
 
 import css from "./UserAcccount.module.css";
@@ -30,11 +29,6 @@ const BookingSchema = Yup.object().shape({
 const UserAccount = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectMe);
-  const bookings = useSelector(selectBookings);
-
-  useEffect(() => {
-    dispatch(fetchAllBookings());
-  }, [dispatch]);
 
   const handleSubmit = async (values) => {
     let data;
@@ -142,50 +136,7 @@ const UserAccount = () => {
               place
             </p>
           </div>
-          {bookings && bookings?.length >= 1 ? (
-            bookings.map((booking) => {
-              return (
-                <div key={booking.id} className={css.bookingWrapper}>
-                  <div className={css.bookingBlock}>
-                    <h3 className={css.bookingTitle}>Booking #{booking.id}</h3>
-                    <p className={css.bookingCar}>
-                      {booking.car.brand} {booking.car.model}
-                      {`(${booking.car.carClass})`}
-                    </p>
-                    <p className={css.bookingText}>{booking.plan}</p>
-                  </div>
-                  <div className={css.bookingBlock}>
-                    <p className={css.bookingText}>
-                      PickUp Date: {booking.startDate.split("T")[0]}
-                    </p>
-                    <p className={css.bookingText}>
-                      DropOff Date: {booking.endDate.split("T")[0]}
-                    </p>
-                  </div>
-                  <div className={css.bookingBlock}>
-                    <button className={css.bookingBasicBtn} disabled>
-                      Update
-                    </button>
-                    <button
-                      className={css.transBtn}
-                      onClick={() =>
-                        dispatch(
-                          setOpen({
-                            component: "DeleteBookingModal",
-                            props: { id: booking.id },
-                          })
-                        )
-                      }
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <p className={css.text}>You don't have any bookings yet</p>
-          )}
+          <BookingsList />
         </div>
       </div>
     </div>
