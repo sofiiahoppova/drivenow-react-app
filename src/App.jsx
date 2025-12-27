@@ -13,7 +13,8 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import UserAccount from "./components/UserAccount/UserAccount";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer/Footer";
-import Modal from "./components/Modal/Modal";
+import Modal from "./components/shared/Modal/Modal";
+
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 import { setToken } from "./redux/auth/authSlice";
