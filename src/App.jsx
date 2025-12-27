@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "./components/Header/Header";
-import HomePage from "./pages/HomePage";
+import LandingPage from "./pages/LandingPage";
 import AutoParkPage from "./pages/AutoParkPage";
 import BookingPage from "./pages/BookingPage";
 import PoliciesPage from "./pages/PoliciesPage";
@@ -72,7 +72,7 @@ const App = () => {
           <Routes>
             <Route
               path="/"
-              element={<HomePage setActiveSlide={setActiveSlide} />}
+              element={<LandingPage setActiveSlide={setActiveSlide} />}
             />
             <Route
               path="/autopark"
