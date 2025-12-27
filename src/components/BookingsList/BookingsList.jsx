@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
-import Loader from "../Loader/Loader";
+import Loader from "../shared/Loader/Loader";
 import BookingItem from "./components/BookingItem/BookingItem";
 
 import { fetchAllBookings } from "../../redux/bookings/operations";

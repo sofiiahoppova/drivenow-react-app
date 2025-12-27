@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-import Logo from "../Logo/Logo";
+import Logo from "../shared/Logo/Logo";
 
 import css from "./Footer.module.css";
 

@@ -7,7 +7,7 @@ import {
   selectIsAuthenticated,
   selectIsInitialized,
 } from "../../redux/user/selectors";
-import Loader from "../Loader/Loader";
+import Loader from "../shared/Loader/Loader";
 
 const ProtectedRoute = () => {
   const dispatch = useDispatch();

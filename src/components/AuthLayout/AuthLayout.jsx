@@ -1,6 +1,6 @@
 import React from "react";
 
-import Logo from "../Logo/Logo";
+import Logo from "../shared/Logo/Logo";
 
 import css from "./AuthLayout.module.css";
 

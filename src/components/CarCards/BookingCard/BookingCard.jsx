@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import clsx from "clsx";
 
-import Loader from "../../Loader/Loader";
+import Loader from "../../shared/Loader/Loader";
 
 import { selectDates } from "../../../redux/filters/selectors";
 import { calculateDays } from "/src/utils/calculateDays";
@@ -107,10 +107,7 @@ const BookingCard = () => {
         <p className={css.total}>Total</p>
         <span className={css.total}>{price.total} $</span>
       </div>
-      <button
-        className={css.bookBtn}
-        type="submit"
-      >
+      <button className={css.bookBtn} type="submit">
         Confirm booking
       </button>
       <div className={css.inputWrapper}>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
-import Loader from "../Loader/Loader";
+import Loader from "../shared/Loader/Loader";
 import BasicCard from "../CarCards/BasicCard/BasicCard";
 import Pagination from "./Pagination/Pagination";
 
