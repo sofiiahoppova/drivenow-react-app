@@ -1,12 +1,15 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 
-import css from "./FiltersBar.module.css";
-import { useDispatch } from "react-redux";
 import { resetFilters, setFilter } from "../../redux/filters/filtersSlice";
+import { selectFilters } from "../../redux/filters/selectors";
 
-const FiltersBar = ({ filter }) => {
+import css from "./FiltersBar.module.css";
+
+const FiltersBar = () => {
   const dispatch = useDispatch();
+  const filters = useSelector(selectFilters);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -49,7 +52,7 @@ const FiltersBar = ({ filter }) => {
               name="brand"
               id="brand"
               className={css.select}
-              defaultValue={filter}
+              defaultValue={filters.brand}
             >
               <option value="">Brand</option>
               <option value="Fiat">Fiat</option>
