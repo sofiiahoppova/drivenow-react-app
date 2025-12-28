@@ -6,14 +6,14 @@ import ReviewsSection from "../components/landing/ReviewsSection/ReviewsSection"
 import BrandsSection from "../components/landing/BrandsSection/BrandsSection";
 import FAQSection from "../components/landing/FAQSection/FAQSection";
 
-const LandingPage = ({ setActiveSlide }) => {
+const LandingPage = () => {
   return (
     <div>
       <HeroSection />
       <AboutUsSection />
       <BenefitsSection />
       <ReviewsSection />
-      <BrandsSection setActiveSlide={setActiveSlide} />
+      <BrandsSection />
       <FAQSection />
     </div>
   );

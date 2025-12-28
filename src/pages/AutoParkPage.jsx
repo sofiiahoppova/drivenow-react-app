@@ -5,11 +5,11 @@ import SearchBar from "../components/SearchBar/SearchBar/SearchBar";
 import CarsCatalog from "../components/CarsCatalog/CarsCatalog";
 import FiltersBar from "../components/FiltersBar/FiltersBar";
 
-const AutoParkPage = ({ activeSlide }) => {
+const AutoParkPage = () => {
   return (
     <>
       <SearchBar />
-      <FiltersBar filter={activeSlide} />
+      <FiltersBar />
       <CarsCatalog />
       <Toaster />
     </>

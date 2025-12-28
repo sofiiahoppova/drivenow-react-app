@@ -26,7 +26,7 @@ const brands = [
   { id: 8, name: "Audi" },
 ];
 
-const BrandsSection = ({ setActiveSlide }) => {
+const BrandsSection = () => {
   const dispatch = useDispatch();
 
   const settings = {
@@ -59,7 +59,6 @@ const BrandsSection = ({ setActiveSlide }) => {
     ],
     beforeChange: (current, next) => {
       const brand = brands[next].name;
-      setActiveSlide(brand);
       dispatch(setFilter({ brand: brand }));
     },
   };
