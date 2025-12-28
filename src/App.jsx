@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useLayoutEffect, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -54,8 +54,6 @@ const App = () => {
   const { isOpen, component, props } = useSelector((state) => state.modal);
   const Component = modalComponents[component];
 
-  const [activeSlide, setActiveSlide] = useState("");
-
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("modal-open");
@@ -71,14 +69,8 @@ const App = () => {
       <Suspense fallback={<p>Loading...</p>}>
         <Wrapper>
           <Routes>
-            <Route
-              path="/"
-              element={<LandingPage setActiveSlide={setActiveSlide} />}
-            />
-            <Route
-              path="/autopark"
-              element={<AutoParkPage activeSlide={activeSlide} />}
-            />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/autopark" element={<AutoParkPage />} />
             <Route path="/policies" element={<PoliciesPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LogInPage />} />
