@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import Navigation from "../Navigation/Navigation";
-import Logo from "../shared/Logo/Logo";
+import Navigation from "./Navigation";
+import Logo from "../../shared/Logo/Logo";
 
 import css from "./Header.module.css";
 
