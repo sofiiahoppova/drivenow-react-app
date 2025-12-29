@@ -2,22 +2,22 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
-import Loader from "../shared/Loader/Loader";
-import BasicCard from "../CarCards/BasicCard/BasicCard";
-import Pagination from "./Pagination/Pagination";
+import Loader from "../../shared/Loader/Loader";
+import BasicCard from "./CatalogCard/BasicCard";
+import Pagination from "./Pagination";
 
-import { fetchAllCars } from "../../redux/cars/operations";
+import { fetchAllCars } from "../../../redux/cars/operations";
 import {
   selectDates,
   selectFilters,
   selectPage,
-} from "../../redux/filters/selectors";
+} from "../../../redux/filters/selectors";
 import {
   selectAllCars,
   selectCarsError,
   selectCarsStatus,
   selectPagination,
-} from "../../redux/cars/selectors";
+} from "../../../redux/cars/selectors";
 
 import css from "./CarsCatalog.module.css";
 

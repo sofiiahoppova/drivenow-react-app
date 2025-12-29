@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import PriceTable from "../components/PriceTable/PriceTable";
-import Plans from "../components/Plans/Plans";
-import CarFeaturesList from "../shared/CarFeaturesList/CarFeaturesList";
+import PriceTable from "./PriceTable";
+import Plans from "./Plans";
+import CarFeaturesList from "./CarFeaturesList";
 
-import { selectDates } from "../../../redux/filters/selectors";
-import { setOpen } from "../../../redux/modal/modalSlice";
+import { selectDates } from "../../../../redux/filters/selectors";
+import { setOpen } from "../../../../redux/modal/modalSlice";
 
 import css from "./BasicCard.module.css";
 

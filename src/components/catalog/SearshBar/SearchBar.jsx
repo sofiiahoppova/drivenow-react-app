@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
-import DatesInputs from "../DatesInputs/DatesInputs";
+import DatesInputs from "./DatesInputs";
 
-import { setDates } from "../../../redux/filters/filtersSlice";
+import { setDates } from "/src/redux/filters/filtersSlice.js";
 
 import css from "./SearchBar.module.css";
 

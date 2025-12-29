@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
-import DatesInputs from "../DatesInputs/DatesInputs";
+import DatesInputs from "./DatesInputs";
 
-import { setDates } from "../../../redux/filters/filtersSlice";
-import { setClose } from "../../../redux/modal/modalSlice";
+import { setDates } from "/src/redux/filters/filtersSlice.js";
+import { setClose } from "/src/redux/modal/modalSlice.js";
 
 import css from "./SearchBarModal.module.css";
 

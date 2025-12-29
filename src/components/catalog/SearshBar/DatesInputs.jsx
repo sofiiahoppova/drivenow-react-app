@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { selectDates } from "../../../redux/filters/selectors";
+import { selectDates } from "/src/redux/filters/selectors.js";
 
 import css from "./DatesInputs.module.css";
 
