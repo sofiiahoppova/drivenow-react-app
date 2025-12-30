@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
-import Loader from "../shared/Loader/Loader";
-import BookingItem from "./components/BookingItem/BookingItem";
+import Loader from "../../shared/Loader/Loader";
+import BookingItem from "./BookingItem";
 
-import { fetchAllBookings } from "../../redux/bookings/operations";
+import { fetchAllBookings } from "../../../redux/bookings/operations";
 import {
   selectBookingStatus,
   selectBookings,
-} from "../../redux/bookings/selectors";
+} from "../../../redux/bookings/selectors";
 
 import css from "./BookingsList.module.css";
 
