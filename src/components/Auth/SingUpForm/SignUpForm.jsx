@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 
-import InputField from "../shared/InputField/InputField";
+import InputField from "../../shared/InputField/InputField";
 import Divider from "../shared/Divider/Divider";
 import GoogleAuth from "../shared/GoogleAuth/GoogleAuth";
 

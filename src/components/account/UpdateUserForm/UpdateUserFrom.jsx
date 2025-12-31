@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 
-import InputField from "../../auth/shared/InputField/InputField";
+import InputField from "../../shared/InputField/InputField";
 
 import { selectMe } from "/src/redux/user/selectors";
 import { updateUserMe } from "/src/redux/user/operations";
