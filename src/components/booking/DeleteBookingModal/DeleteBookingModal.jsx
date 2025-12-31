@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import clsx from "clsx";
 
-import { deleteBooking } from "../../../../redux/bookings/operations";
+import { deleteBooking } from "../../../redux/bookings/operations";
 import {
   selectBookingError,
   selectBookingStatus,
-} from "../../../../redux/bookings/selectors";
-import { setClose } from "../../../../redux/modal/modalSlice";
+} from "../../../redux/bookings/selectors";
+import { setClose } from "../../../redux/modal/modalSlice";
 
 import css from "./DeleteBookingModal.module.css";
 
