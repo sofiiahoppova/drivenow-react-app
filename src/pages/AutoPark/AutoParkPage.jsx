@@ -1,9 +1,9 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 
-import SearchBar from "../components/SearchBar/SearchBar/SearchBar";
-import CarsCatalog from "../components/CarsCatalog/CarsCatalog";
-import FiltersBar from "../components/FiltersBar/FiltersBar";
+import SearchBar from "../../components/catalog/SearshBar/SearchBar";
+import FiltersBar from "../../components/catalog/FiltersBar/FiltersBar";
+import CarsCatalog from "../../components/catalog/CarsCatalog/CarsCatalog";
 
 const AutoParkPage = () => {
   return (

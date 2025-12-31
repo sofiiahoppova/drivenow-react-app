@@ -5,12 +5,12 @@ import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 
-import BookingCard from "../components/CarCards/BookingCard/BookingCard";
-import BookingForm from "../components/BookingForm/BookingForm";
+import BookingCard from "../../components/booking/BookingCard/BookingCard";
+import BookingForm from "../../components/booking/BookingForm/BookingForm";
 
-import { selectDates } from "../redux/filters/selectors";
-import { selectMe } from "../redux/user/selectors";
-import { createBooking } from "../redux/bookings/operations";
+import { selectDates } from "/src/redux/filters/selectors";
+import { selectMe } from "/src/redux/user/selectors";
+import { createBooking } from "/src/redux/bookings/operations";
 
 import css from "./BookingPage.module.css";
 
