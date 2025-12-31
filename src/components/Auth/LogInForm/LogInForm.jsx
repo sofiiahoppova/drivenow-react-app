@@ -5,11 +5,11 @@ import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 
-import InputField from "../../shared/InputField/InputField";
-import Divider from "../../shared/Divider/Divider";
-import GoogleAuth from "../../shared/GoogleAuth/GoogleAuth";
+import InputField from "../../Auth/shared/InputField/InputField";
+import Divider from "../../Auth/shared/Divider/Divider";
+import GoogleAuth from "../../Auth/shared/GoogleAuth/GoogleAuth";
 
-import { forgotPassword, logIn } from "../../../../redux/auth/operations";
+import { forgotPassword, logIn } from "../../../redux/auth/operations";
 
 import css from "./LogInForm.module.css";
 
