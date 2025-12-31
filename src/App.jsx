@@ -2,20 +2,21 @@ import { Suspense, useEffect, useLayoutEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import Header from "./components/Header/Header";
-import LandingPage from "./pages/LandingPage";
-import AutoParkPage from "./pages/AutoParkPage";
-import BookingPage from "./pages/BookingPage";
-import PoliciesPage from "./pages/PoliciesPage";
-import SignUpPage from "./pages/SignUpPage";
-import LogInPage from "./pages/LogInPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
-import UserAccount from "./components/UserAccount/UserAccount";
-import NotFoundPage from "./pages/NotFoundPage";
-import Footer from "./components/Footer/Footer";
+import Header from "./components/layout/Header/Header";
+import LandingPage from "./pages/Landing/LandingPage";
+import AutoParkPage from "./pages/AutoPark/AutoParkPage";
+import BookingPage from "./pages/Booking/BookingPage";
+import PoliciesPage from "./pages/Policies/PoliciesPage";
+import SignUpPage from "./pages/SingUp/SignUpPage";
+import LogInPage from "./pages/LogIn/LogInPage";
+import ResetPasswordPage from "./pages/ResetPassword/ResetPasswordPage";
+import AccountPage from "./pages/Account/AccountPage";
+import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import Footer from "./components/layout/Footer/Footer";
+
 import Modal from "./components/shared/Modal/Modal";
 
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "./components/routing/ProtectedRoute/ProtectedRoute";
 
 import { setToken } from "./redux/auth/authSlice";
 import { setInit } from "./redux/user/usersSlice";
