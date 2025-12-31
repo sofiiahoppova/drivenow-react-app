@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-import { selectDates } from "../../../../redux/filters/selectors";
+import { selectDates } from "/src/redux/filters/selectors";
 import { calculateDays } from "/src/utils/calculateDays";
 
 import css from "./Plans.module.css";

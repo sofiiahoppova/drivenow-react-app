@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import clsx from "clsx";
 
-import { setClose } from "../../../redux/modal/modalSlice";
-import { logOut } from "../../../redux/auth/operations";
-import { clearUser } from "../../../redux/user/usersSlice";
+import { setClose } from "/src/redux/modal/modalSlice";
+import { logOut } from "/src/redux/auth/operations";
+import { clearUser } from "/src/redux/user/usersSlice";
 
 import css from "./LogOutModal.module.css";
 

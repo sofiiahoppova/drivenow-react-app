@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import clsx from "clsx";
 
-import { selectMe } from "../../../redux/user/selectors";
+import { selectMe } from "/src/redux/user/selectors";
 
 import css from "./Navigation.module.css";
 

@@ -6,15 +6,15 @@ import clsx from "clsx";
 
 import Loader from "../../shared/Loader/Loader";
 
-import { selectDates } from "../../../redux/filters/selectors";
+import { selectDates } from "/src/redux/filters/selectors";
 import { calculateDays } from "/src/utils/calculateDays";
-import { calculatePrice } from "../../../utils/calculatePrice";
-import { fetchCarById } from "../../../redux/cars/operations";
+import { calculatePrice } from "/src/utils/calculatePrice";
+import { fetchCarById } from "/src/redux/cars/operations";
 import {
   selectCar,
   selectCarsError,
   selectCarsStatus,
-} from "../../../redux/cars/selectors";
+} from "/src/redux/cars/selectors";
 
 import css from "./BookingCard.module.css";
 

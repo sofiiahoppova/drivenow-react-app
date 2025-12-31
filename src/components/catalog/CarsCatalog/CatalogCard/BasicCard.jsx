@@ -5,8 +5,8 @@ import PriceTable from "./PriceTable";
 import Plans from "./Plans";
 import CarFeaturesList from "./CarFeaturesList";
 
-import { selectDates } from "../../../../redux/filters/selectors";
-import { setOpen } from "../../../../redux/modal/modalSlice";
+import { selectDates } from "/src/redux/filters/selectors";
+import { setOpen } from "/src/redux/modal/modalSlice";
 
 import css from "./BasicCard.module.css";
 

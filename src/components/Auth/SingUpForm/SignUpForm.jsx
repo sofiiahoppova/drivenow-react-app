@@ -9,7 +9,7 @@ import InputField from "../shared/InputField/InputField";
 import Divider from "../shared/Divider/Divider";
 import GoogleAuth from "../shared/GoogleAuth/GoogleAuth";
 
-import { signUp } from "../../../redux/auth/operations";
+import { signUp } from "/src/redux/auth/operations";
 
 import css from "./SignUpForm.module.css";
 

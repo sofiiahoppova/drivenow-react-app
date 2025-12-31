@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 import Loader from "../../shared/Loader/Loader";
 import BookingItem from "./BookingItem";
 
-import { fetchAllBookings } from "../../../redux/bookings/operations";
+import { fetchAllBookings } from "/src/redux/bookings/operations";
 import {
   selectBookingStatus,
   selectBookings,
-} from "../../../redux/bookings/selectors";
+} from "/src/redux/bookings/selectors";
 
 import css from "./BookingsList.module.css";
 

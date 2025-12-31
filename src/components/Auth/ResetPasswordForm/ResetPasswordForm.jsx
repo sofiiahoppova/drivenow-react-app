@@ -5,9 +5,9 @@ import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 
-import InputField from "../../Auth/shared/InputField/InputField";
+import InputField from "../../auth/shared/InputField/InputField";
 
-import { resetPassword } from "../../../redux/auth/operations";
+import { resetPassword } from "/src/redux/auth/operations";
 
 import css from "./ResetPasswordForm.module.css";
 

@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 
-import { setPage } from "../../../redux/filters/filtersSlice";
-import { selectPage } from "../../../redux/filters/selectors";
+import { setPage } from "/src/redux/filters/filtersSlice";
+import { selectPage } from "/src/redux/filters/selectors";
 
 import css from "./Pagination.module.css";
 

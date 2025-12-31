@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 
-import { setClose } from "../../../../redux/modal/modalSlice";
+import { setClose } from "/src/redux/modal/modalSlice";
 
 import css from "./AuthModal.module.css";
 

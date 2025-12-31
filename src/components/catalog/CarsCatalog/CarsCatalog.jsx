@@ -6,18 +6,18 @@ import Loader from "../../shared/Loader/Loader";
 import BasicCard from "./CatalogCard/BasicCard";
 import Pagination from "./Pagination";
 
-import { fetchAllCars } from "../../../redux/cars/operations";
+import { fetchAllCars } from "/src/redux/cars/operations";
 import {
   selectDates,
   selectFilters,
   selectPage,
-} from "../../../redux/filters/selectors";
+} from "/src/redux/filters/selectors";
 import {
   selectAllCars,
   selectCarsError,
   selectCarsStatus,
   selectPagination,
-} from "../../../redux/cars/selectors";
+} from "/src/redux/cars/selectors";
 
 import css from "./CarsCatalog.module.css";
 

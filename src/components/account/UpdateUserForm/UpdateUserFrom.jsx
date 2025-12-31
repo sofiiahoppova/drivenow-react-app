@@ -4,10 +4,10 @@ import { Formik, Form } from "formik";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 
-import InputField from "../../Auth/shared/InputField/InputField";
+import InputField from "../../auth/shared/InputField/InputField";
 
-import { selectMe } from "../../../redux/user/selectors";
-import { updateUserMe } from "../../../redux/user/operations";
+import { selectMe } from "/src/redux/user/selectors";
+import { updateUserMe } from "/src/redux/user/operations";
 
 import css from "./UpdateUserForm.module.css";
 

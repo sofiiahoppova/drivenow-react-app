@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectMe } from "../../../redux/user/selectors";
-import { setOpen } from "../../../redux/modal/modalSlice";
+import { selectMe } from "/src/redux/user/selectors";
+import { setOpen } from "/src/redux/modal/modalSlice";
 
 import css from "./AccountSideBar.module.css";
 
