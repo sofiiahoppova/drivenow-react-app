@@ -1,8 +1,8 @@
-import ReviewsList from "../components/ReviewsList/ReviewsList";
-import SearchBarModal from "../components/SearchBar/SearchBarModal/SearchBarModal";
-import LogOutModal from "../components/UserAccount/components/LogOutModal/LogOutModal";
-import AuthModal from "../components/Auth/components/AuthModal/AuthModal";
-import DeleteBookingModal from "../components/UserAccount/components/DeleteBookingModal/DeleteBookingModal";
+import ReviewsList from "../components/catalog/ReviewsList/ReviewsList";
+import SearchBarModal from "../components/catalog/SearshBar/SearchBarModal";
+import LogOutModal from "../components/account/LogOutModal/LogOutModal";
+import AuthModal from "../components/auth/AuthModal/AuthModal";
+import DeleteBookingModal from "../components/booking/DeleteBookingModal/DeleteBookingModal";
 
 export const modalComponents = {
   ReviewsList,
