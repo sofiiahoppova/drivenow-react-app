@@ -47,9 +47,15 @@ const App = () => {
   }, [token, dispatch]);
 
   const location = useLocation();
-  const hideLayoutPaths = ["/login", "/signup", "/reset-password"];
+  const showLayoutPaths = [
+    "/",
+    "/autopark",
+    "/policies",
+    "/booking/:id",
+    "/account",
+  ];
 
-  const shouldHideLayout = hideLayoutPaths.includes(location.pathname);
+  const shouldShowLayout = showLayoutPaths.includes(location.pathname);
   const shouldHideFooter = location.pathname == "/account";
 
   const { isOpen, component, props } = useSelector((state) => state.modal);
@@ -65,7 +71,7 @@ const App = () => {
 
   return (
     <>
-      {!shouldHideLayout && <Header />}
+      {shouldShowLayout && <Header />}
 
       <Suspense fallback={<p>Loading...</p>}>
         <Wrapper>
@@ -78,14 +84,14 @@ const App = () => {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/booking/:id" element={<BookingPage />} />
-              <Route path="/account" element={<UserAccount />} />
+              <Route path="/account" element={<AccountPage />} />
             </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Wrapper>
       </Suspense>
 
-      {!shouldHideLayout && !shouldHideFooter && <Footer />}
+      {shouldShowLayout && !shouldHideFooter && <Footer />}
 
       {isOpen && (
         <Modal>
