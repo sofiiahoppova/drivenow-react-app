@@ -2,27 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 import toast from "react-hot-toast";
-import * as Yup from "yup";
 
 import InputField from "../../shared/InputField/InputField";
 
 import { selectMe } from "/src/redux/user/selectors";
 import { updateUserMe } from "/src/redux/user/operations";
+import { updateUserSchema } from "../validation/updateuser.schema";
 
 import css from "./UpdateUserForm.module.css";
-
-const BookingSchema = Yup.object().shape({
-  fullName: Yup.string().min(3).required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  phoneNumber: Yup.string().matches(
-    /^\+?\d{10,15}$/,
-    "Enter a valid phone number"
-  ),
-  dateOfBirth: Yup.string().matches(
-    /^\d{4}\-\d{2}\-\d{2}$/,
-    "Date of birth must be in format YYYY-MM-DD"
-  ),
-});
 
 const UpdateUserFrom = () => {
   const dispatch = useDispatch();
@@ -56,7 +43,7 @@ const UpdateUserFrom = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={BookingSchema}
+      validationSchema={updateUserSchema}
       onSubmit={handleSubmit}
     >
       <Form className={css.wrapper}>
