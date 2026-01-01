@@ -3,26 +3,15 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import toast from "react-hot-toast";
-import * as Yup from "yup";
 
 import InputField from "../../shared/InputField/InputField";
 import Divider from "../shared/Divider/Divider";
 import GoogleAuth from "../shared/GoogleAuth/GoogleAuth";
 
 import { signUp } from "/src/redux/auth/operations";
+import { signUpSchema } from "../validation/signup.schema";
 
 import css from "./SignUpForm.module.css";
-
-const SignupSchema = Yup.object().shape({
-  fullName: Yup.string()
-    .min(2, "Too Short!")
-    .max(70, "Too Long!")
-    .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .min(8, "Password should have more than 7 simbols length")
-    .required("Required"),
-});
 
 const initialValues = {
   fullName: "",
@@ -49,7 +38,7 @@ const SignUpForm = () => {
       <h2 className={css.title}>Sign Up a new account</h2>
       <Formik
         initialValues={initialValues}
-        validationSchema={SignupSchema}
+        validationSchema={signUpSchema}
         onSubmit={handleSubmit}
       >
         <Form className={css.form}>

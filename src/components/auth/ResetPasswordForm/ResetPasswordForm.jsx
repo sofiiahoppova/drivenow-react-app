@@ -3,19 +3,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
-import * as Yup from "yup";
 
 import InputField from "../../shared/InputField/InputField";
 
 import { resetPassword } from "/src/redux/auth/operations";
+import { resetPasswordSchema } from "../validation/resetpassword.shema";
 
 import css from "./ResetPasswordForm.module.css";
-
-const SignupSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(8, "Password should have more than 7 simbols length")
-    .required("Required"),
-});
 
 const initialValues = {
   password: "",
@@ -44,7 +38,7 @@ const ResetPasswordForm = () => {
       <h2 className={css.title}>Reset your password</h2>
       <Formik
         initialValues={initialValues}
-        validationSchema={SignupSchema}
+        validationSchema={resetPasswordSchema}
         onSubmit={handleSubmit}
       >
         <Form className={css.form}>
