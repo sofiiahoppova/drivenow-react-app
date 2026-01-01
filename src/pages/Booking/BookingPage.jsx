@@ -3,7 +3,6 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
-import * as Yup from "yup";
 
 import BookingCard from "../../components/booking/BookingCard/BookingCard";
 import BookingForm from "../../components/booking/BookingForm/BookingForm";
@@ -11,34 +10,9 @@ import BookingForm from "../../components/booking/BookingForm/BookingForm";
 import { selectDates } from "/src/redux/filters/selectors";
 import { selectMe } from "/src/redux/user/selectors";
 import { createBooking } from "/src/redux/bookings/operations";
+import { bookingSchema } from "../../components/booking/validation/booking.schema";
 
 import css from "./BookingPage.module.css";
-
-const bookingSchema = Yup.object().shape({
-  plan: Yup.string().oneOf(["Basic plan", "Full coverage"]).required(),
-  paymentMethod: Yup.string().oneOf(["online", "offline"]).required("Required"),
-
-  phoneNumber: Yup.string()
-    .matches(/^\+?\d{10,15}$/, "Enter a valid phone number")
-    .required("Required"),
-
-  dateOfBirth: Yup.string()
-    .matches(
-      /^\d{4}\-\d{2}\-\d{2}$/,
-      "Date of birth must be in format YYYY.MM.DD"
-    )
-    .required("Required"),
-
-  fullName: Yup.string().min(3).required("Required"),
-
-  email: Yup.string().email("Invalid email").required("Required"),
-
-  passport: Yup.string().min(4, "Serial number too short"),
-  passportPhoto: Yup.mixed(),
-
-  license: Yup.string().min(4, "Serial number too short"),
-  licensePhoto: Yup.mixed(),
-});
 
 const BookingPage = () => {
   const navigate = useNavigate();
