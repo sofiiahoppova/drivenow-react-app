@@ -1,10 +1,11 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
 import DatesInputs from "./DatesInputs";
 
+import { selectDates } from "/src/redux/filters/selectors.js";
 import { setDates } from "/src/redux/filters/filtersSlice.js";
 import { setClose } from "/src/redux/modal/modalSlice.js";
 
@@ -13,12 +14,11 @@ import css from "./SearchBarModal.module.css";
 const SearchBarModal = ({ carId }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { startDate, endDate } = useSelector(selectDates);
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const pickupDate = form.pickup.value;
-    const dropoffDate = form.dropoff.value;
+  const handleSearch = (values) => {
+    const pickupDate = values.pickup;
+    const dropoffDate = values.dropoff;
     const dateNow = Date.now();
     const today = new Date(dateNow);
 
@@ -37,15 +37,19 @@ const SearchBarModal = ({ carId }) => {
     }
   };
 
+  const initialValues = { pickup: startDate || "", dropoff: endDate || "" };
+
   return (
-    <form onSubmit={handleSearch} className={css.form}>
-      <DatesInputs />
-      <div className={css.btnWrapper}>
-        <button className={css.button} type="submit">
-          Book Now
-        </button>
-      </div>
-    </form>
+    <Formik initialValues={initialValues} onSubmit={handleSearch}>
+      <Form className={css.form}>
+        <DatesInputs />
+        <div className={css.btnWrapper}>
+          <button className={css.button} type="submit">
+            Book Now
+          </button>
+        </div>
+      </Form>
+    </Formik>
   );
 };
 
