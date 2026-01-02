@@ -13,7 +13,6 @@ const FiltersBar = () => {
   const filters = useSelector(selectFilters);
 
   const handleSubmit = (values) => {
-    console.log(values);
     dispatch(
       setFilter({
         brand: values.brand || null,
