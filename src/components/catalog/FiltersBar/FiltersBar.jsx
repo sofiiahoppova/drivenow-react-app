@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Field, Form, Formik } from "formik";
 import clsx from "clsx";
 
 import { resetFilters, setFilter } from "/src/redux/filters/filtersSlice";
@@ -11,15 +12,14 @@ const FiltersBar = () => {
   const dispatch = useDispatch();
   const filters = useSelector(selectFilters);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = event.target.elements;
+  const handleSubmit = (values) => {
+    console.log(values);
     dispatch(
       setFilter({
-        brand: form.brand.value || null,
-        seats: form.seats.value || null,
-        transmission: form.transmission.checked ? "automatic" : null,
-        carClass: form.class.value || null,
+        brand: values.brand || null,
+        seats: values.seats || null,
+        transmission: values.transmission ? "automatic" : null,
+        carClass: values.class || null,
       })
     );
   };
@@ -28,71 +28,75 @@ const FiltersBar = () => {
     dispatch(resetFilters());
   };
 
+  const initialValues = {
+    transmission: false,
+    class: "",
+    brand: filters.brand || "",
+    seats: "",
+  };
+
   return (
     <div className={css.container}>
-      <form onSubmit={handleSubmit} className={css.filtersForm}>
-        <div className={css.mainWrapper}>
-          <label className={clsx(css.checkboxWrapper, css.checkbox)}>
-            <input type="checkbox" name="transmission" id="transmission" />
-            <span className={css.checkmark}></span>
-            <span className={css.label}>Only Automatic</span>
-          </label>
-          <div className={css.selectWrapper}>
-            <select name="class" id="class" className={css.select}>
-              <option value="">Class</option>
-              <option value="economy">Economy</option>
-              <option value="compact">Compact</option>
-              <option value="midsize">Midsize</option>
-              <option value="SUV">SUV</option>
-              <option value="premium">Premium</option>
-            </select>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        onReset={handleReset}
+      >
+        <Form className={css.filtersForm}>
+          <div className={css.mainWrapper}>
+            <label className={clsx(css.checkboxWrapper, css.checkbox)}>
+              <Field type="checkbox" name="transmission" id="transmission" />
+              <span className={css.checkmark}></span>
+              <span className={css.label}>Only Automatic</span>
+            </label>
+            <div className={css.selectWrapper}>
+              <Field as="select" name="class" id="class" className={css.select}>
+                <option value="">Class</option>
+                <option value="economy">economy</option>
+                <option value="compact">compact</option>
+                <option value="midsize">midsize</option>
+                <option value="SUV">SUV</option>
+                <option value="premium">premium</option>
+              </Field>
+            </div>
+            <div className={css.selectWrapper}>
+              <Field as="select" name="brand" id="brand" className={css.select}>
+                <option value="">Brand</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Nissan">Nissan</option>
+                <option value="BMW">BMW</option>
+                <option value="Audi">Audi</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Mercedes">Mercedes</option>
+                <option value="Lexus">Lexus</option>
+                <option value="Lamborghini">Lamborghini</option>
+              </Field>
+            </div>
+            <div className={css.selectWrapper}>
+              <Field as="select" name="seats" id="seats" className={css.select}>
+                <option value="">Seats</option>
+                <option value="2">2 seats</option>
+                <option value="4">4 seats</option>
+                <option value="5">5 seats</option>
+                <option value="7">7 seats</option>
+                <option value="8">8 seats</option>
+              </Field>
+            </div>
           </div>
-          <div className={css.selectWrapper}>
-            <select
-              name="brand"
-              id="brand"
-              className={css.select}
-              defaultValue={filters.brand}
-            >
-              <option value="">Brand</option>
-              <option value="Fiat">Fiat</option>
-              <option value="Toyota">Toyota</option>
-              <option value="Nissan">Nissan</option>
-              <option value="BMW">BMW</option>
-              <option value="Audi">Audi</option>
-              <option value="Volkswagen">Volkswagen</option>
-              <option value="Mercedes">Mercedes</option>
-              <option value="Lexus">Lexus</option>
-              <option value="Lamborghini">Lamborghini</option>
-            </select>
+          <div className={css.buttonsWrapper}>
+            <button type="reset" className={clsx(css.btn, css.resetBtn)}>
+              ResetAll
+            </button>
+            <button type="submit" className={clsx(css.btn, css.submitBtn)}>
+              Filter
+              <svg className={css.icon} width={24} height={24}>
+                <use href="/sprite.svg#icon-filter"></use>
+              </svg>
+            </button>
           </div>
-          <div className={css.selectWrapper}>
-            <select name="seats" id="seats" className={css.select}>
-              <option value="">Seats</option>
-              <option value="2">2 seats</option>
-              <option value="4">4 seats</option>
-              <option value="5">5 seats</option>
-              <option value="7">7 seats</option>
-              <option value="8">8 seats</option>
-            </select>
-          </div>
-        </div>
-        <div className={css.buttonsWrapper}>
-          <button
-            type="reset"
-            onClick={handleReset}
-            className={clsx(css.btn, css.resetBtn)}
-          >
-            ResetAll
-          </button>
-          <button type="submit" className={clsx(css.btn, css.submitBtn)}>
-            Filter
-            <svg className={css.icon} width={24} height={24}>
-              <use href="/sprite.svg#icon-filter"></use>
-            </svg>
-          </button>
-        </div>
-      </form>
+        </Form>
+      </Formik>
     </div>
   );
 };
